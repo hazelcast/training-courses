@@ -10,9 +10,10 @@
   <version>1.0</version>
 
   <modules>
-    <module>lab1</module>
-    <module>lab2</module>
-    <module>lab3</module>
+    <module>mod00-common</module>
+    <module>mod01-cloud-connection-lab</module>
+    <module>mod02-db-etl-lab</module>
+    <module>mod03-query-lab</module>
     <module>lab4</module>
     <module>lab5</module>
     <module>lab6</module>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.hazelcast</groupId>
+  <artifactId>mod02-db-etl-lab</artifactId>
+  <version>1.0</version>
+
+  <parent>
+    <artifactId>essentials-training-parent</artifactId>
+    <groupId>com.hazelcast</groupId>
+    <version>1.0</version>
+  </parent>
+
+  <dependencies>
+    <!-- avoid class loading shenanigans
+    <dependency>
+      <groupId>com.hazelcast</groupId>
+      <artifactId>hazelcast</artifactId>
+      <version>3.12</version>
+    </dependency>
+    -->
+
+    <dependency>
+      <groupId>com.hazelcast.jet</groupId>
+      <artifactId>hazelcast-jet</artifactId>
+      <version>3.2.2</version>
+    </dependency>
+
+      <dependency>
+          <groupId>com.hazelcast</groupId>
+          <artifactId>mod00-common</artifactId>
+          <version>1.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <!-- Add the Hazelcast client dependency -->
+
+  </dependencies>
+</project>
