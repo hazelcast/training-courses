@@ -78,15 +78,9 @@ public class PopulateCacheWithJet {
 
     public static void main(String[] args) {
 
-        // CloudConfig and ConfigUtil are in the common module
-        CloudConfig starterConfig = ConfigUtil.getPersonalClusterConfig();
-
-        // IMDG configuration will be used within the pipeline to access Map remotely
-        ClientConfig config = new ClientConfig();
-        config.setGroupConfig(new GroupConfig(starterConfig.name, starterConfig.password));
-        config.setProperty("hazelcast.client.statistics.enabled", "true");
-        config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), starterConfig.discoveryToken);
-        config.setProperty(HazelcastCloudDiscovery.CLOUD_URL_BASE_PROPERTY.getName(), starterConfig.urlBase);
+        // ConfigUtil is in the common module
+        String configname = ConfigUtil.findConfigNameInArgs(args);
+        ClientConfig config = ConfigUtil.getClientConfigForCluster(configname);
 
         PopulateCacheWithJet main = new PopulateCacheWithJet();
 

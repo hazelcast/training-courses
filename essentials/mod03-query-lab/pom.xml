@@ -25,5 +25,10 @@
       <version>1.0</version>
       <scope>compile</scope>
     </dependency>
+    <dependency> <!-- for JDBC version of lab -->
+      <groupId>org.mariadb.jdbc</groupId>
+      <artifactId>mariadb-java-client</artifactId>
+      <version>2.4.4</version>
+    </dependency>
   </dependencies>
 </project>

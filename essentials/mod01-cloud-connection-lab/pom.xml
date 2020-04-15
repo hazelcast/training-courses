@@ -35,7 +35,7 @@
 
       <dependency>
           <groupId>com.hazelcast</groupId>
-          <artifactId>common</artifactId>
+          <artifactId>mod00-common</artifactId>
           <version>1.0</version>
           <scope>compile</scope>
       </dependency>

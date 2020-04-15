@@ -2,9 +2,6 @@ package com.hazelcast;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
-import com.hazelcast.client.spi.impl.discovery.HazelcastCloudDiscovery;
-import com.hazelcast.client.spi.properties.ClientProperty;
-import com.hazelcast.config.GroupConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 
@@ -12,13 +9,17 @@ public class Main {
 
     public static void main(String[] args) {
         // CloudConfig and ConfigUtil are in the common module
-        CloudConfig starterConfig = ConfigUtil.getPersonalClusterConfig();
+        //CloudConfig starterConfig = ConfigUtil.getPersonalClusterConfig();
 
-        ClientConfig config = new ClientConfig();
-        config.setGroupConfig(new GroupConfig(starterConfig.name, starterConfig.password));
-        config.setProperty("hazelcast.client.statistics.enabled", "true");
-        config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), starterConfig.discoveryToken);
-        config.setProperty(HazelcastCloudDiscovery.CLOUD_URL_BASE_PROPERTY.getName(), starterConfig.urlBase);
+//        ClientConfig config = new ClientConfig();
+//        config.setGroupConfig(new GroupConfig(starterConfig.name, starterConfig.password));
+//        config.setProperty("hazelcast.client.statistics.enabled", "true");
+//        config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), starterConfig.discoveryToken);
+//        if (starterConfig.urlBase != null)
+//            config.setProperty(HazelcastCloudDiscovery.CLOUD_URL_BASE_PROPERTY.getName(), starterConfig.urlBase);
+
+        String configname = ConfigUtil.findConfigNameInArgs(args);
+        ClientConfig config = ConfigUtil.getClientConfigForCluster(configname);
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 

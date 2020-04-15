@@ -12,9 +12,9 @@ public class IDSFactory implements DataSerializableFactory {
     public IdentifiedDataSerializable create(int i) {
         switch (i) {
             case IDS_INVENTORY_KEY:
-                return new InventoryKey();
+                //return new InventoryKey();
             case IDS_INVENTORY:
-                return new Inventory();
+                //return new Inventory();
             default:
                 throw new IllegalArgumentException("IDSFactory: Unexpected object key " + i);
         }

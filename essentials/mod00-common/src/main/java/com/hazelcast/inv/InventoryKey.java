@@ -5,8 +5,9 @@ import com.hazelcast.nio.ObjectDataOutput;
 import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class InventoryKey implements IdentifiedDataSerializable {
+public class InventoryKey implements Serializable /*, IdentifiedDataSerializable*/ {
     private String SKU;
     private String location;
 
@@ -26,23 +27,19 @@ public class InventoryKey implements IdentifiedDataSerializable {
         return SKU + location;
     }
 
-    @Override
     public int getFactoryId() {
         return IDSFactory.FACTORY_ID;
     }
 
-    @Override
     public int getId() {
         return IDSFactory.IDS_INVENTORY_KEY;
     }
 
-    @Override
     public void writeData(ObjectDataOutput objectDataOutput) throws IOException {
         objectDataOutput.writeUTF(SKU);
         objectDataOutput.writeUTF(location);
     }
 
-    @Override
     public void readData(ObjectDataInput objectDataInput) throws IOException {
         SKU = objectDataInput.readUTF();
         location = objectDataInput.readUTF();

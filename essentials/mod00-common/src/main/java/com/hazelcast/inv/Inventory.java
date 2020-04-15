@@ -5,9 +5,10 @@ import com.hazelcast.nio.ObjectDataOutput;
 import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Inventory implements IdentifiedDataSerializable {
+public class Inventory implements Serializable /*, IdentifiedDataSerializable*/ {
 
     private String sku;
     private String description;
@@ -64,17 +65,14 @@ public class Inventory implements IdentifiedDataSerializable {
     // IdentifiedDataSerializable implementation
     ////////////////
 
-    @Override
     public int getFactoryId() {
         return IDSFactory.FACTORY_ID;
     }
 
-    @Override
     public int getId() {
         return IDSFactory.IDS_INVENTORY;
     }
 
-    @Override
     public void writeData(ObjectDataOutput objectDataOutput) throws IOException {
         objectDataOutput.writeUTF(sku);
         objectDataOutput.writeUTF(description);
@@ -83,7 +81,6 @@ public class Inventory implements IdentifiedDataSerializable {
         objectDataOutput.writeInt(quantity);
     }
 
-    @Override
     public void readData(ObjectDataInput objectDataInput) throws IOException {
         sku = objectDataInput.readUTF();
         description = objectDataInput.readUTF();

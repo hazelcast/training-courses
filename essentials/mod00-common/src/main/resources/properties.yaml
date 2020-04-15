@@ -1,25 +1,29 @@
 ---
 cluster-configuration:
 
+  on-prem-cluster:
+    name: dev
+    password: dev-pass
+
   # Hazelcast Cloud Shared - Multi-tenant, suitable for dev and small production deployments, has a free 200MB tier and pay-as-you-go.
   personal-cluster:
     # This is a free tier cluster set up by the student
     name: training
     password: e723bbce9e5c4a2babbb6e5e87284941
     discovery-token: 1q7jIiHG8CmXm500cOjYhdgLrpwmvhG9vzpSc8ZY7NqcVbpRyT
-    url-base: https://coordinator.hazelcast.cloud
+    #url-base: https://coordinator.hazelcast.cloud
 
   shared-training-cluster:
     # This is a cluster maintained by the education team
     name: training
     password:
     discovery-token:
-    url-base: https://coordinator.hazelcast.cloud
+    #url-base: https://coordinator.hazelcast.cloud
 
   # Hazelcast Cloud Enterprise - Single tenant, suitable for enterprise deployments.  Pay-as-you-go and contracted tiers.
   enterprise-cluster:
     name: demo
     password:
     discovery-token:
-    url-base: https://ea.test.hazelcast.cloud
+    #url-base: https://ea.test.hazelcast.cloud
     # may add SSL properties here also ... but code doesn't handle them yet

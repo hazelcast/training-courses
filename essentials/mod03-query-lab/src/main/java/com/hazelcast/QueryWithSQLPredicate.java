@@ -5,17 +5,14 @@ import com.hazelcast.client.spi.impl.discovery.HazelcastCloudDiscovery;
 import com.hazelcast.client.spi.properties.ClientProperty;
 import com.hazelcast.config.GroupConfig;
 import com.hazelcast.client.config.ClientConfig;
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.inv.Inventory;
 import com.hazelcast.inv.InventoryKey;
-import com.hazelcast.query.Predicates;
 import com.hazelcast.query.SqlPredicate;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+
 
 public class QueryWithSQLPredicate {
 
@@ -23,7 +20,10 @@ public class QueryWithSQLPredicate {
 
     public Collection<Inventory> queryNearbyStores(String item, String[] locations) {
         IMap<InventoryKey, Inventory> invmap = hazelcast.getMap("invmap");
-        SqlPredicate predicate = new SqlPredicate("location in a, b, c AND quantity > 0");
+        String locnKeys = String.join(",", locations);
+        SqlPredicate predicate = new SqlPredicate("location in (" + locnKeys +
+                ") AND quantity > 0");
+        System.out.println("Query: " + predicate.toString());
         Collection<Inventory> results = invmap.values(predicate);
         return results;
     }
@@ -45,8 +45,10 @@ public class QueryWithSQLPredicate {
         main.hazelcast = HazelcastClient.newHazelcastClient(config);
 
         // We want to query whether an item is available at nearby stores
-        String item = "Item0037";
-        String[] stores = new String[] { "00021", "00032", "00077" };
+        // Items are in format Item + six digit item number, 0-999
+        // Locations are 4 digit numeric, warehouses numbered 1-5, stores 101-150.
+        String item = "Item000037";
+        String[] stores = new String[] { "0121", "0132", "0106" };
         Collection<Inventory> nearby = main.queryNearbyStores(item, stores);
         for (Inventory i : nearby)
             System.out.println(i);
