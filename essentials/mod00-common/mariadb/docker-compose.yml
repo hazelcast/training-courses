@@ -1,0 +1,15 @@
+version: '2'
+services:
+  mariadb:
+    build: .
+    image: "myawn/mariadb-invdb-image"
+    container_name: inventory-database
+    environment:
+      - MYSQL_DATABASE=inventoryDB
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=hzuser
+      - MYSQL_PASS=hzpass
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./data/backup:/data/backup

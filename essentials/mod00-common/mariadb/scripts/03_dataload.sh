@@ -1,0 +1,1 @@
+mysql -u hzuser -phzpass inventoryDB < /data/backup/inv_dump.sql
