@@ -13,4 +13,5 @@
       </tcp-ip>
     </join>
   </network>
+  <management-center enabled="true">https://localhost:8080/hazelcast-mancenter</management-center>
 </hazelcast>

@@ -14,7 +14,7 @@ cluster-configuration:
     #url-base: https://coordinator.hazelcast.cloud
 
   shared-training-cluster:
-    # This is a cluster maintained by the education team
+    # This is a cluster maintained by the education team.   Starter, most likely,
     name: training
     password:
     discovery-token:
