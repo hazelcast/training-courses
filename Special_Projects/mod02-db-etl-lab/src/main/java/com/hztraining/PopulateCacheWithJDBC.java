@@ -29,7 +29,6 @@ public class PopulateCacheWithJDBC {
             counter++;
             if ((counter % 5000) == 0) {
                 System.out.println("Loaded " + counter);
-                System.out.println("   " + key + "=" + item);
             }
 
         }

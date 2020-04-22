@@ -38,8 +38,8 @@ public class QueryWithSQLPredicate {
 
         ClientUserCodeDeploymentConfig ucd = config.getUserCodeDeploymentConfig();
         ucd.setEnabled(true);
-        ucd.addClass(Inventory.class); // Still get CNFE
-        config.setUserCodeDeploymentConfig(ucd);  // not sure if required?
+        ucd.addClass(Inventory.class);
+//        config.setUserCodeDeploymentConfig(ucd);
 
         // Query using SQLPredicate
         QueryWithSQLPredicate main = new QueryWithSQLPredicate();
