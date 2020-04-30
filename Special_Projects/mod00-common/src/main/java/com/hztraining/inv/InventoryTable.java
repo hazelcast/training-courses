@@ -33,8 +33,12 @@ public class InventoryTable
     private static final String selectTemplate =
             "select sku, description, location, loc_type, qty from inventory where sku = ? and location = ?";
 
+    private static final String selectAll =
+            "select all sku, description, location, loc_type, qty from inventory";
+
     private PreparedStatement insertStatement;
     private PreparedStatement selectStatement;
+    private PreparedStatement selectAllStatement;
 
     public synchronized void establishConnection()  {
         try {
@@ -123,6 +127,44 @@ public class InventoryTable
             return item;
         } catch (SQLException e) {
             log.info("Error in " + selectStatement.toString() + " --> " + e.getMessage());
+            //e.printStackTrace();
+            //System.exit(-1);
+            return null;
+        }
+    }
+
+    public synchronized List<Inventory> readAllFromDatabase() {
+        try {
+            if (conn == null)
+                establishConnection();
+
+            if (selectAllStatement == null) {
+                selectAllStatement = conn.prepareStatement(selectAll);
+            }
+
+            ResultSet rs = selectAllStatement.executeQuery();
+            List<Inventory> results = new ArrayList<>();
+
+            if (rs == null) {
+                log.warning("InventoryTable.readAllFromDatabase(): Null resultSet trying to select all");
+                return null;
+            }
+            while (rs.next()) {
+                Inventory item = new Inventory();
+                item.setSKU(rs.getString(SKU));
+                item.setDescription(rs.getString(DESCRIPTION));
+                item.setLocation(rs.getString(LOCATION));
+                item.setLocationType(rs.getString(LOCATION_TYPE));
+                item.setQuantity(rs.getInt(QUANTITY));
+                results.add(item);
+                if ((results.size() % 5000) == 0) {
+                    System.out.println("Processed " + results.size() + " JDBC ResultSet entries");
+                }
+            }
+            //log.info("InventoryTable.readAll selected " + results.size() + " records");
+            return results;
+        } catch (SQLException e) {
+            log.info("Error in " + selectAllStatement.toString() + " --> " + e.getMessage());
             //e.printStackTrace();
             //System.exit(-1);
             return null;

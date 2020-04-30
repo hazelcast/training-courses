@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.hazelcast</groupId>
-  <artifactId>essentials-training-parent</artifactId>
+  <groupId>com.hztraining</groupId>
+  <artifactId>cloud-based-training</artifactId>
   <packaging>pom</packaging>
   <version>1.0</version>
 
@@ -25,6 +25,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
         <configuration>
           <target>1.8</target>
           <source>1.8</source>

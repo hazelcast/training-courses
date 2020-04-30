@@ -14,4 +14,16 @@
     </join>
   </network>
   <management-center enabled="true">https://localhost:8080/hazelcast-mancenter</management-center>
+
+  <!-- used by Module 3 query lab -->
+  <!--
+  <user-code-deployment enabled="true">
+    <class-cache-mode>ETERNAL</class-cache-mode>
+    <provider-mode>LOCAL_AND_CACHED_CLASSES</provider-mode>
+  </user-code-deployment>
+  -->
+
+  <map name="invmap">
+    <in-memory-format>BINARY</in-memory-format>
+  </map>
 </hazelcast>

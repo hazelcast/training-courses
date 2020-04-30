@@ -1,27 +1,24 @@
-package com.hztraining;
+package com.hztraining.solutions;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.client.spi.impl.discovery.HazelcastCloudDiscovery;
+import com.hazelcast.client.spi.properties.ClientProperty;
+import com.hazelcast.config.GroupConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
+import com.hztraining.ConfigUtil;
 
-public class SimpleSetGetTest {
+public class SimpleSetGetTestSolution {
 
     public static void main(String[] args) {
 
         String configname = ConfigUtil.findConfigNameInArgs(args);
         ClientConfig config = ConfigUtil.getClientConfigForCluster(configname);
 
-        // TODO: Override the config read from ConfigUtil with a hand-coded version
-        // Required attributes:
-        //      GroupConfig - including name and password
-        //      Discovery Token -
-        // See ClientConfig javadoc:
-        //  https://docs.hazelcast.org/docs/latest/javadoc/com/hazelcast/client/config/ClientConfig.html
-        // See IMDG Reference Manual:
-        //  https://docs.hazelcast.org/docs/latest-dev/manual/html-single/#configuring-java-client
-
-        // You can also look at ConfigUtil.getClientConfigForCluster for hints
+        config = new ClientConfig();
+        config.setGroupConfig(new GroupConfig("training", "<COPY FROM CONSOLE>"));
+        config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "<COPY FROM CONSOLE>");
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 

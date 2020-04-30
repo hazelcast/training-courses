@@ -22,4 +22,29 @@
     </join>
   </network>
 
+  <map name="invmap">
+    <in-memory-format>BINARY</in-memory-format>
+    <indexes>
+      <index ordered="false">SKU</index>
+      <index ordered="false">location</index>
+    </indexes>
+  </map>
+
+  <!-- the following are not used by mainline labs, but allow additional extra credit
+       experimentation to be done on how these options affect query performance -->
+  <map name="invmap_indexed">
+    <indexes>
+      <index ordered="false">SKU</index>
+      <index ordered="false">location</index>
+    </indexes>
+  </map>
+
+  <map name="invmap_indexed_optimized">
+    <optimize-queries>true</optimize-queries>
+    <indexes>
+      <index ordered="false">SKU</index>
+      <index ordered="false">location</index>
+    </indexes>
+  </map>
+
 </hazelcast>

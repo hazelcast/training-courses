@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.hazelcast</groupId>
+  <groupId>com.hztraining</groupId>
   <artifactId>mod02-db-etl-lab</artifactId>
   <version>1.0</version>
 
   <parent>
-    <artifactId>essentials-training-parent</artifactId>
-    <groupId>com.hazelcast</groupId>
+    <groupId>com.hztraining</groupId>
+    <artifactId>cloud-based-training</artifactId>
     <version>1.0</version>
   </parent>
 
@@ -30,7 +30,7 @@
     </dependency>
 
       <dependency>
-          <groupId>com.hazelcast</groupId>
+          <groupId>com.hztraining</groupId>
           <artifactId>mod00-common</artifactId>
           <version>1.0</version>
           <scope>compile</scope>

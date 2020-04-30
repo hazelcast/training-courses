@@ -4,31 +4,60 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.hazelcast</groupId>
+  <groupId>com.hztraining</groupId>
   <artifactId>mod03-query-lab</artifactId>
   <version>1.0</version>
 
   <parent>
-    <artifactId>essentials-training-parent</artifactId>
-    <groupId>com.hazelcast</groupId>
+    <groupId>com.hztraining</groupId>
+    <artifactId>cloud-based-training</artifactId>
     <version>1.0</version>
   </parent>
 
   <dependencies>
     <dependency>
-      <groupId>com.hazelcast</groupId>
-      <artifactId>hazelcast</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.hazelcast</groupId>
+      <groupId>com.hztraining</groupId>
       <artifactId>mod00-common</artifactId>
       <version>1.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency> <!-- for JDBC version of lab -->
-      <groupId>org.mariadb.jdbc</groupId>
-      <artifactId>mariadb-java-client</artifactId>
-      <version>2.4.4</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+
+          <mainClass>com.hztraining.QueryWithSQLPredicate</mainClass>
+
+          <!-- pass on command line instead of here
+          <arguments>
+            <argument>-onprem</argument>
+          </arguments>
+          -->
+
+        </configuration>
+
+        <!-- this doesn't help, and is redundant with project dependency
+        <dependencies>
+          <dependency>
+            <groupId>com.hztraining</groupId>
+            <artifactId>mod00-common</artifactId>
+            <version>1.0</version>
+          </dependency>
+        </dependencies>
+        -->
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

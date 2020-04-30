@@ -22,19 +22,31 @@ public class ConfigUtil {
     public static final String URL_BASE = "url-base";
 
     private static Map<String, Map> configs;
+    private static String defaultClusterName;
+
+    static class ConfigInfo {
+        String defaultConfig;
+        Map<String, Map> clusterConfiguration;
+        public ConfigInfo() {}
+        public void setDefaultConfig(String config) { this.defaultConfig = config; }
+        public void setClusterConfiguration(Map<String, Map> configs) {
+            this.clusterConfiguration = configs;
+        }
+    }
 
     static {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         Map<String, Map<String, Map>> properties = null;
+        ConfigInfo configInfo;
         try {
             URL yamlFile = ConfigUtil.class.getClassLoader().getResource("properties.yaml");
             System.out.println("Reading config info from " + yamlFile.toExternalForm());
-            properties = mapper.readValue(yamlFile, Map.class);
-            configs = properties.get("cluster-configuration");
+            configInfo = mapper.readValue(yamlFile, ConfigInfo.class);
+            defaultClusterName = configInfo.defaultConfig;
+            configs = configInfo.clusterConfiguration;
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static CloudConfig getOnPremClusterConfig() {
@@ -65,8 +77,21 @@ public class ConfigUtil {
         return cc;
     }
 
+    public static ClientConfig getDefaultConfig() {
+        return getClientConfigForCluster(defaultClusterName);
+    }
+
     public static ClientConfig getClientConfigForCluster(String configname) {
-        if (configname == null) configname = "onprem"; // default
+        if (configname == null) {
+            System.out.println("No arg for cluster, properties.yaml default is " + defaultClusterName);
+            switch (defaultClusterName) {
+                case "on-prem-cluster": configname = "onprem"; break;
+                case "personal-cluster": configname = "personal"; break;
+                case "shared-cluster": configname = "shared"; break;
+                case "enterprise-cluster": configname = "enterprise"; break;
+                default: configname = "onprem";
+            }
+        }
         System.out.println("Looking up config for " + configname);
         CloudConfig cloudConfig;
         switch (configname) {
@@ -97,5 +122,9 @@ public class ConfigUtil {
             if (arg.equals("-enterprise")) return "enterprise";
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Default config is " + defaultClusterName);
     }
 }
