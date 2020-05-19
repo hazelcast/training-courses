@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>lab6</artifactId>
+  <artifactId>lab3</artifactId>
   <version>1.0</version>
 
   <parent>
@@ -18,10 +18,6 @@
     <dependency>
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.hazelcast</groupId>
-      <artifactId>hazelcast-client</artifactId>
     </dependency>
   </dependencies>
 </project>

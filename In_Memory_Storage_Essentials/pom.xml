@@ -5,11 +5,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>essentials-training-parent</artifactId>
+  <artifactId>in_memory_storage_essentials</artifactId>
   <packaging>pom</packaging>
   <version>1.0</version>
 
   <modules>
+    <module>lab1</module>
+    <module>lab2</module>
+    <module>lab3</module>
     <module>lab4</module>
     <module>lab5</module>
     <module>lab6</module>

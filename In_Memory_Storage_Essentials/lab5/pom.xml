@@ -9,7 +9,7 @@
   <version>1.0</version>
 
   <parent>
-    <artifactId>essentials-training-parent</artifactId>
+    <artifactId>in_memory_storage_essentials</artifactId>
     <groupId>com.hazelcast</groupId>
     <version>1.0</version>
   </parent>

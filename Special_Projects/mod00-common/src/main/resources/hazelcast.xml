@@ -24,10 +24,9 @@
 
   <map name="invmap">
     <in-memory-format>BINARY</in-memory-format>
-    <indexes>
-      <index ordered="false">SKU</index>
-      <index ordered="false">location</index>
-    </indexes>
+    <map-store>
+      <class-name>com.hztraining.inv.InventoryTable</class-name>
+    </map-store>
   </map>
 
   <!-- the following are not used by mainline labs, but allow additional extra credit

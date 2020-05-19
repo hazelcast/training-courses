@@ -11,8 +11,8 @@ clusterConfiguration:
   personal-cluster:
     # This is a free tier cluster set up by the student
     name: training
-    password: 119e71d889d84d6ca6c88f5cb50a472f
-    discovery-token: yCnSwV8hn8AzgvWacunFAvqoFR950EmNrk4tvg2nqOQqQJ4lhy
+    password: 0f4ac986fa964fb59accdee82bea2e53
+    discovery-token: r5tuQFu4brhQqRliPL4L04l8ceL5XdhWjgRbrveQ93nZuhRZEl
     #url-base: https://coordinator.hazelcast.cloud
 
   shared-training-cluster:
