@@ -21,6 +21,5 @@
       <version>3.12</version>
     </dependency>
     <!-- Add the Hazelcast client dependency -->
-
   </dependencies>
 </project>
