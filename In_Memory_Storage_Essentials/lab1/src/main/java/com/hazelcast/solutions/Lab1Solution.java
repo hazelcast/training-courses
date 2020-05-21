@@ -9,5 +9,7 @@ public class Lab1Solution {
         // run the application multiple times to cluster them up
         HazelcastInstance hazelcast = Hazelcast.newHazelcastInstance();
 
+        // An embedded Hazelcast instance is now running and will continue until terminated
+
     }
 }
