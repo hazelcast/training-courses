@@ -24,25 +24,32 @@ public class PopulateCacheWithJDBC {
         String configname = ConfigUtil.findConfigNameInArgs(args);
         ClientConfig config = ConfigUtil.getClientConfigForCluster(configname);
 
-        StringBuilder maria = new StringBuilder();
-        maria.append(System.getProperty("user.home"));
-        maria.append("/.m2/repository");
-        maria.append("/org/mariadb/jdbc/mariadb-java-client");
-        maria.append("/2.4.4");
-        maria.append("/mariadb-java-client-2.4.4.jar");
-        String mariaJar = maria.toString();
-
-        // Without mariaJar we fail to load org.mariadb.jdbc.Driver
-        // with mariaJar, we get further, but fail on another file (RowProtocol)
-        // that is in the same jar
-
-        // TODO: have to solve UCD inconsistency, mariaJar and InventoryTable will cause
-        // failure on cloud.
-        ClientUserCodeDeploymentConfig ucd = config.getUserCodeDeploymentConfig();
-        ucd.setEnabled(true);
-        //ucd.addJar(mariaJar);
-        ucd.addClass(Inventory.class);
-        //ucd.addClass(InventoryTable.class); // local only, because defined as MapLoader
+//        if (configname == null)
+//            configname = ConfigUtil.getDefaultConfigName();
+//        if (configname.contains("on-prem")) {
+//            // All JDBC access is on the client side, so not clear why on-prem deployment
+//            // fails if it doesn't find
+//            System.out.println("Using UCD for on-prem deployment");
+//            StringBuilder maria = new StringBuilder();
+//            maria.append(System.getProperty("user.home"));
+//            maria.append("/.m2/repository");
+//            maria.append("/org/mariadb/jdbc/mariadb-java-client");
+//            maria.append("/2.4.4");
+//            maria.append("/mariadb-java-client-2.4.4.jar");
+//            String mariaJar = maria.toString();
+////
+////        // Without mariaJar we fail to load org.mariadb.jdbc.Driver
+////        // with mariaJar, we get further, but fail on another file (RowProtocol)
+////        // that is in the same jar
+////
+////        // TODO: have to solve UCD inconsistency, mariaJar and InventoryTable will cause
+////        // failure on cloud.
+            ClientUserCodeDeploymentConfig ucd = config.getUserCodeDeploymentConfig();
+            ucd.setEnabled(true);
+//            ucd.addJar(mariaJar);
+            ucd.addClass(Inventory.class);
+//            ucd.addClass(InventoryTable.class);
+//        }
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
@@ -53,7 +60,6 @@ public class PopulateCacheWithJDBC {
         indexConfigs.add(new MapIndexConfig("SKU", false));
         indexConfigs.add(new MapIndexConfig("location", false));
         indexedConfig.setMapIndexConfigs(indexConfigs);
-
 
         IMap<InventoryKey, Inventory> invmap = client.getMap("invmap");
         IMap<InventoryKey, Inventory> invmapi = client.getMap("invmap_indexed");
@@ -67,19 +73,26 @@ public class PopulateCacheWithJDBC {
             InventoryKey key = new InventoryKey(item.getSKU(), item.getLocation());
             localMap.put(key, item);
             //invmap.put(key, item); // NO - will take 30 minutes to load one-at-a-time this way!
+            counter++;
         }
         try {
             System.out.println("Starting putAll");
             invmap.putAll(localMap);
-            System.out.println("Finished with non-indexed map");
-            invmapi.putAll(localMap);
-            System.out.println("Done with putAll");
             long finish = System.nanoTime();
             long elapsedNanos = finish - start;
             double elapsedSeconds = (double) elapsedNanos / 1_000_000_000D;
+            System.out.printf("Finished unindexed map in %3.3f seconds [includes db fetch]\n", elapsedSeconds);
+            // Note above includes retrieval from DB so not a straight comparison with put to
+            // indexed map -- but even making the first measurement include db access it is still
+            // significantly faster than when adding the indexes.
 
-            System.out.printf("Finished in %3.3f seconds\n", elapsedSeconds);
-            System.out.println("Final count " + counter);
+            start = System.nanoTime();
+            invmapi.putAll(localMap);
+            finish = System.nanoTime();
+            elapsedNanos = finish - start;
+            elapsedSeconds = (double) elapsedNanos / 1_000_000_000D;
+            System.out.printf("Finished indexed map in %3.3f seconds\n", elapsedSeconds);
+            System.out.println("Final entry count " + counter);
         } finally {
             client.shutdown();
         }

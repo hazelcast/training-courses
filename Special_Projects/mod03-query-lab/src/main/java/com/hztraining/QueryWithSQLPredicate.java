@@ -48,7 +48,7 @@ public class QueryWithSQLPredicate {
         ClientUserCodeDeploymentConfig ucd = config.getUserCodeDeploymentConfig();
         ucd.setEnabled(true);
         ucd.addClass(Inventory.class);
-        ucd.addClass(InventoryTable.class); // local only, because defined as MapLoader
+        //ucd.addClass(InventoryTable.class); // local only, because defined as MapLoader
 
         // Query using SQLPredicate
         QueryWithSQLPredicate main = new QueryWithSQLPredicate();
@@ -83,6 +83,7 @@ public class QueryWithSQLPredicate {
             for (Inventory i : nearby)
                 System.out.println(i);
 
+            // With index
             start = System.currentTimeMillis();
             IMap<InventoryKey, Inventory> invmapi = main.client.getMap("invmap_indexed");
             nearby = main.queryNearbyStores(invmapi, item, stores);

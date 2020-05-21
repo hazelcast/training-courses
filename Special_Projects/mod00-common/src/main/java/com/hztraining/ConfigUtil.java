@@ -77,6 +77,7 @@ public class ConfigUtil {
         return cc;
     }
 
+    public static String getDefaultConfigName() { return defaultClusterName; }
     public static ClientConfig getDefaultConfig() {
         return getClientConfigForCluster(defaultClusterName);
     }
