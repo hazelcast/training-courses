@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>lab6</artifactId>
+  <artifactId>lab02-BasicDataAccess-ClientServer</artifactId>
   <version>1.0</version>
 
   <parent>
@@ -18,10 +18,12 @@
     <dependency>
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast</artifactId>
+      <version>3.12</version>
     </dependency>
     <dependency>
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast-client</artifactId>
     </dependency>
+    <!-- Add the Hazelcast client dependency -->
   </dependencies>
 </project>

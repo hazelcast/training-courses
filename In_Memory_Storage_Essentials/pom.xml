@@ -11,11 +11,11 @@
 
   <modules>
     <module>lab01-FormCluster</module>
-    <module>lab02-BasicDataAccess-ClientServer</module>
-    <module>lab03-BasicDataAccess-Embedded</module>
-    <module>lab4</module>
-    <module>lab5</module>
-    <module>lab6</module>
+    <module>lab02-BasicDataAccess-Embedded</module>
+    <module>lab03-BasicDataAccess-ClientServer</module>
+    <module>lab04-Configuration</module>
+    <module>lab05-Discovery</module>
+    <module>lab06-Partitioning</module>
     <module>lab7</module>
   </modules>
 

@@ -1,9 +1,9 @@
-package com.hazelcast;
+package com.hztraining;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 
-public class Member2 {
+public class Member1 {
     public static void main(String[] args) {
         // Starting a Hazelcast node
         HazelcastInstance node = Hazelcast.newHazelcastInstance();
@@ -11,10 +11,13 @@ public class Member2 {
         // Create a Hazelcast backed map
 
 
-        // Get key 42 from the map and store the value
-        String result = null;//remove null
+        // Write the 1000 elements to the map
+        for (int i = 0; i < 1000; i++) {
+            int key = i;
+            String value = "value-" + String.valueOf(i);
 
-        // Print the result to the console
-        System.out.println(result);
+            // Add the given key and value to the map
+
+        }
     }
 }
