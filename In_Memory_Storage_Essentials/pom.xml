@@ -10,9 +10,9 @@
   <version>1.0</version>
 
   <modules>
-    <module>lab1</module>
-    <module>lab2</module>
-    <module>lab3</module>
+    <module>lab01-FormCluster</module>
+    <module>lab02-BasicDataAccess-ClientServer</module>
+    <module>lab03-BasicDataAccess-Embedded</module>
     <module>lab4</module>
     <module>lab5</module>
     <module>lab6</module>

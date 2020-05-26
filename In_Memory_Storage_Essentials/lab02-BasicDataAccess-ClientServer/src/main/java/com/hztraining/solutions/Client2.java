@@ -1,25 +1,24 @@
-package com.hazelcast.solutions;
+package com.hztraining.solutions;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.core.HazelcastInstance;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public class Client1 {
+public class Client2 {
     public static void main(String[] args) {
         // Create Hazelcast instance which is backed by a client
         HazelcastInstance client = HazelcastClient.newHazelcastClient();
 
-        // Create a Hazelcast backed map
+
+        // Change the initialization and create a Hazelcast backed map
         Map<Integer, String> map = client.getMap("my-testing-map");
 
-        // Write the 1000 elements to the map
-        for (int i = 0; i < 1000; i++) {
-            int key = i;
-            String value = "value-" + String.valueOf(i);
+        // Get key 42 from the map and store the value
+        String result = map.get(42);
 
-            // Put the entry into the map
-            map.put(key, value);
-        }
+        // Print the result to the console
+        System.out.println(result);
     }
 }

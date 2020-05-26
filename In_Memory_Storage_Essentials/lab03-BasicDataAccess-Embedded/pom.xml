@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>lab1</artifactId>
+  <artifactId>lab03-BasicDataAccess-Embedded</artifactId>
   <version>1.0</version>
 
   <parent>
-    <artifactId>in_memory_storage_essentials</artifactId>
+    <artifactId>essentials-training-parent</artifactId>
     <groupId>com.hazelcast</groupId>
     <version>1.0</version>
   </parent>
@@ -19,11 +19,5 @@
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.hazelcast</groupId>
-      <artifactId>hazelcast-client</artifactId>
-    </dependency>
-    <!-- Add the Hazelcast client dependency -->
-
   </dependencies>
 </project>

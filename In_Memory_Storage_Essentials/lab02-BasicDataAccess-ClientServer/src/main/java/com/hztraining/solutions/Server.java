@@ -1,4 +1,4 @@
-package com.hazelcast.solutions;
+package com.hztraining.solutions;
 
 import com.hazelcast.core.Hazelcast;
 

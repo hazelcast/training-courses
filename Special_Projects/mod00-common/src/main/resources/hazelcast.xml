@@ -11,6 +11,12 @@
     <provider-mode>LOCAL_AND_CACHED_CLASSES</provider-mode>
   </user-code-deployment>
 
+  <serialization>
+    <data-serializable-factories>
+      <data-serializable-factory factory-id="42">com.hztraining.inv.IDSFactory</data-serializable-factory>
+    </data-serializable-factories>
+  </serialization>
+
   <network>
     <join>
       <!-- For trainings everyone should create his/her own cluster, therefore

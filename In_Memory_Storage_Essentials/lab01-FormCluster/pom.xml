@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>lab3</artifactId>
+  <artifactId>lab01-FormCluster</artifactId>
   <version>1.0</version>
 
   <parent>
-    <artifactId>essentials-training-parent</artifactId>
+    <artifactId>in_memory_storage_essentials</artifactId>
     <groupId>com.hazelcast</groupId>
     <version>1.0</version>
   </parent>
@@ -19,5 +19,11 @@
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.hazelcast</groupId>
+      <artifactId>hazelcast-client</artifactId>
+    </dependency>
+    <!-- Add the Hazelcast client dependency -->
+
   </dependencies>
 </project>

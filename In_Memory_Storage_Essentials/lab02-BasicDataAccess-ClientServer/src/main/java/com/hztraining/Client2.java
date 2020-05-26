@@ -1,4 +1,4 @@
-package com.hazelcast;
+package com.hztraining;
 
 import java.util.HashMap;
 import java.util.Map;

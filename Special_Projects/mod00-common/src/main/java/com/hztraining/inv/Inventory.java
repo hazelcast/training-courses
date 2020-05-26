@@ -2,6 +2,7 @@ package com.hztraining.inv;
 
 import com.hazelcast.nio.ObjectDataInput;
 import com.hazelcast.nio.ObjectDataOutput;
+import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import java.util.Random;
 /** An Inventory item.   Used to represent items in the InventoryDB database as well as
  * the invmap IMap
  */
-public class Inventory implements Serializable /*, IdentifiedDataSerializable*/ {
+public class Inventory implements Serializable, IdentifiedDataSerializable {
 
     private String sku;
     private String description;

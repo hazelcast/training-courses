@@ -7,6 +7,7 @@ import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.MapIndexConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
+import com.hztraining.inv.IDSFactory;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
 import com.hztraining.inv.InventoryTable;
@@ -48,6 +49,7 @@ public class PopulateCacheWithJDBC {
             ucd.setEnabled(true);
 //            ucd.addJar(mariaJar);
             ucd.addClass(Inventory.class);
+            ucd.addClass(IDSFactory.class);
 //            ucd.addClass(InventoryTable.class);
 //        }
 
