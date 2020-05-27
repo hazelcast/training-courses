@@ -5,7 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>lab7</artifactId>
+  <artifactId>labXX-WAN-Replication</artifactId>
+  <packaging>pom</packaging>
   <version>1.0</version>
 
   <parent>
@@ -13,6 +14,12 @@
     <groupId>com.hazelcast</groupId>
     <version>1.0</version>
   </parent>
+
+  <modules>
+    <module>wan-client</module>
+    <module>wan-cluster-a</module>
+    <module>wan-cluster-b</module>
+  </modules>
 
   <dependencies>
     <dependency>
