@@ -1,6 +1,6 @@
 package com.hztraining;
 
-import com.hazelcast.core.MapStore;
+import com.hazelcast.map.MapStore;
 
 import java.util.Arrays;
 import java.util.Collection;

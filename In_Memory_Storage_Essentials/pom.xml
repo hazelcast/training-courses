@@ -17,12 +17,14 @@
     <module>lab05-Discovery</module>
     <module>lab06-Partitioning</module>
     <module>lab07-Eviction</module>
-    <module>labXX-WAN-Replication</module>
+    <module>lab08-HD-Memory</module>
+    <module>lab09-Querying</module>
+    <module>lab10-Indexing</module>
 
   </modules>
 
   <properties>
-    <hazelcast.version>3.12</hazelcast.version>
+    <hazelcast.version>4.0</hazelcast.version>
   </properties>
 
   <build>
@@ -40,6 +42,7 @@
     </plugins>
   </build>
 
+  <!--
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -49,16 +52,12 @@
       </dependency>
       <dependency>
         <groupId>com.hazelcast</groupId>
-        <artifactId>hazelcast-client</artifactId>
-        <version>${hazelcast.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.hazelcast</groupId>
         <artifactId>hazelcast-enterprise</artifactId>
         <version>${hazelcast.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
+  -->
 
   <!-- For hazelcast-enterprise.jar, if you wish to use it -->
   <repositories>

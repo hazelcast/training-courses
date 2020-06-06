@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>lab03-BasicDataAccess-Embedded</artifactId>
+  <artifactId>lab02-BasicDataAccess-Embedded</artifactId>
   <version>1.0</version>
 
   <parent>
-    <artifactId>essentials-training-parent</artifactId>
+    <artifactId>in_memory_storage_essentials</artifactId>
     <groupId>com.hazelcast</groupId>
     <version>1.0</version>
   </parent>
@@ -18,6 +18,8 @@
     <dependency>
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast</artifactId>
+      <version>${hazelcast.version}</version>
     </dependency>
   </dependencies>
+
 </project>

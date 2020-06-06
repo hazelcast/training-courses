@@ -5,8 +5,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>lab02-BasicDataAccess-ClientServer</artifactId>
+  <artifactId>lab03-BasicDataAccess-ClientServer</artifactId>
   <version>1.0</version>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.hazelcast</groupId>
+      <artifactId>hazelcast</artifactId>
+      <version>${hazelcast.version}</version>
+    </dependency>
+  </dependencies>
 
   <parent>
     <artifactId>in_memory_storage_essentials</artifactId>
@@ -14,16 +22,4 @@
     <version>1.0</version>
   </parent>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.hazelcast</groupId>
-      <artifactId>hazelcast</artifactId>
-      <version>3.12</version>
-    </dependency>
-    <dependency>
-      <groupId>com.hazelcast</groupId>
-      <artifactId>hazelcast-client</artifactId>
-    </dependency>
-    <!-- Add the Hazelcast client dependency -->
-  </dependencies>
 </project>
