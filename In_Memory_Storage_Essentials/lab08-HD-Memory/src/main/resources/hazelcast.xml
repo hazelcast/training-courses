@@ -24,7 +24,7 @@
 
     <map name="training">
         <!-- Configured this map to be in native memory -->
-        <in-memory-format>OFFHEAP</in-memory-format>
+        <in-memory-format>NATIVE</in-memory-format>
     </map>
 
 </hazelcast>

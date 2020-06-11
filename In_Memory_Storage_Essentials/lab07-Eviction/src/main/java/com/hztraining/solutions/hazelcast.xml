@@ -3,6 +3,11 @@
            xmlns="http://www.hazelcast.com/schema/config"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
+    <!-- Import license key configuration -->
+    <!-- not needed for this version of the lab
+    <import resource="member-license-key.xml" />
+    -->
+
     <network>
         <join>
             <!-- For trainings everyone should create his/her own cluster, therefore
@@ -14,20 +19,14 @@
         </join>
     </network>
 
-
-    <!-- Import license key configuration -->
-    <import resource="member-license-key.xml" />
-
-    <!-- Configured a native memory space to store data in -->
-    <native-memory enabled="true">
-        <size value="1" unit="GIGABYTES"/>
-    </native-memory>
-
     <map name="training">
-        <!-- Configured this map to be in native memory -->
-        <in-memory-format>NATIVE</in-memory-format>
+        <map-store enabled="true">
+            <class-name>com.hztraining.DummyMapStore</class-name>
+        </map-store>
 
-        <!-- Configure an ordered index on the attribute age -->
+        <!-- Configure eviction for 5 elements per member -->
+        <eviction max-size-policy="PER_NODE" size="5"/>
+
 
     </map>
 

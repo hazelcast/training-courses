@@ -27,7 +27,15 @@
         <!-- Configured this map to be in native memory -->
         <in-memory-format>NATIVE</in-memory-format>
 
-        <!-- Configure an ordered index on the attribute age -->
+        <!-- Configure an index on the attribute age -->
+        <indexes>
+            <index type="SORTED">
+                <attributes>
+                    <attribute>age</attribute>
+                </attributes>
+            </index>
+        </indexes>
+
 
     </map>
 

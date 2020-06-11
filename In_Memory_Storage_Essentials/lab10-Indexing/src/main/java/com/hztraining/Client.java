@@ -19,7 +19,7 @@ public class Client {
         System.out.print("Pushing data... ");
         for (int i = 0; i < 10000; i++) {
             int key = i;
-            UserModel value = new UserModel("User-" + i, i, 10 + (i % 40));
+            UserModel value = UserModel.fake();
 
             // Put the entry into the map
             map.set(key, value);
@@ -39,5 +39,6 @@ public class Client {
 
         // Printing out the result size
         System.out.println("Number of found results: " + users.size());
+        client.shutdown();
     }
 }

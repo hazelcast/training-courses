@@ -4,7 +4,9 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <!-- Import license key configuration -->
+    <!-- not needed for this version of the lab
     <import resource="member-license-key.xml" />
+    -->
 
     <network>
         <join>
@@ -17,12 +19,9 @@
         </join>
     </network>
 
-    <!-- Configure statistics to be sent to Management Center -->
-    <management-center enabled="true">http://localhost:8080/mancenter</management-center>
-
     <map name="training">
         <map-store enabled="true">
-            <class-name>com.hazelcast.DummyMapStore</class-name>
+            <class-name>com.hztraining.DummyMapStore</class-name>
         </map-store>
 
         <!-- Configure eviction for 5 elements per member -->
