@@ -26,7 +26,7 @@ public class PopulateCacheWithJet {
         String password = InventoryDB.getPassword();
         Pipeline p = Pipeline.create();
 
-        BatchStage<Inventory> source = p.drawFrom(
+        BatchStage<Inventory> source = p.readFrom(
                 // Sources.jdbc takes 3 arguments:
                 //  ConnectionSupplier (a JDBC connection subtype)
                 // resultSetFn - takes connection, parallelism, and processor index
@@ -68,7 +68,7 @@ public class PopulateCacheWithJet {
             entry(new InventoryKey(inv.getSKU(), inv.getLocation()), inv)
         ).setName("Convert to Map.Entry");
 
-        asMapEntry.drainTo(Sinks.remoteMap("invmap", remoteIMDGConfig))
+        asMapEntry.writeTo(Sinks.remoteMap("invmap", remoteIMDGConfig))
                   .setName("Write to IMap (currently local");
         return p;
     }

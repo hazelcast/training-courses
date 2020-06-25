@@ -1,6 +1,6 @@
 package com.hztraining.inv;
 
-import com.hazelcast.core.MapLoader;
+import com.hazelcast.map.MapLoader;
 import com.hazelcast.logging.ILogger;
 import com.hazelcast.logging.Logger;
 

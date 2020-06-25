@@ -2,11 +2,9 @@ package com.hztraining.solutions;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
-import com.hazelcast.client.spi.impl.discovery.HazelcastCloudDiscovery;
-import com.hazelcast.client.spi.properties.ClientProperty;
-import com.hazelcast.config.GroupConfig;
+import com.hazelcast.client.properties.ClientProperty;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IMap;
+import com.hazelcast.map.IMap;
 import com.hztraining.ConfigUtil;
 
 public class SimpleSetGetTestSolution {
@@ -15,10 +13,6 @@ public class SimpleSetGetTestSolution {
 
         String configname = ConfigUtil.findConfigNameInArgs(args);
         ClientConfig config = ConfigUtil.getClientConfigForCluster(configname);
-
-        config = new ClientConfig();
-        config.setGroupConfig(new GroupConfig("training", "<COPY FROM CONSOLE>"));
-        config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "<COPY FROM CONSOLE>");
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 

@@ -28,19 +28,23 @@ public class InventoryKey implements Serializable, IdentifiedDataSerializable {
         return SKU + location;
     }
 
+    @Override
     public int getFactoryId() {
         return IDSFactory.FACTORY_ID;
     }
 
-    public int getId() {
+    @Override
+    public int getClassId() {
         return IDSFactory.IDS_INVENTORY_KEY;
     }
 
+    @Override
     public void writeData(ObjectDataOutput objectDataOutput) throws IOException {
         objectDataOutput.writeUTF(SKU);
         objectDataOutput.writeUTF(location);
     }
 
+    @Override
     public void readData(ObjectDataInput objectDataInput) throws IOException {
         SKU = objectDataInput.readUTF();
         location = objectDataInput.readUTF();

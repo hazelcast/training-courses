@@ -18,22 +18,19 @@
   <dependencies>
       <dependency>
           <groupId>com.hazelcast</groupId>
-          <artifactId>hazelcast-client</artifactId>
-          <version>3.12</version>
+          <artifactId>hazelcast</artifactId>
+          <version>${hazelcast.version}</version>
       </dependency>
-
       <dependency>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-databind</artifactId>
           <version>2.10.2</version>
       </dependency>
-
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-yaml</artifactId>
         <version>2.10.2</version>
       </dependency>
-
       <dependency>
           <groupId>org.mariadb.jdbc</groupId>
           <artifactId>mariadb-java-client</artifactId>

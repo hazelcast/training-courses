@@ -4,16 +4,15 @@ import com.hazelcast.aggregation.Aggregators;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IMap;
+import com.hazelcast.map.IMap;
 import com.hazelcast.query.Predicate;
-import com.hazelcast.query.SqlPredicate;
+import com.hazelcast.query.Predicates;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
 
 public class Aggregation {
 
     private HazelcastInstance hazelcast;
-
 
     public static void main(String[] args) {
 
@@ -27,7 +26,7 @@ public class Aggregation {
 
         // Aggregate total on hand across all locations
         String sku = "Item000123";
-        SqlPredicate predicate = new SqlPredicate("sku=" + sku);
+        Predicate predicate = Predicates.sql("sku=" + sku);
         long totalOnHand = invmap.aggregate(Aggregators.integerSum("quantity"), predicate);
         System.out.printf("Total on hand for %s = %d\n", sku, totalOnHand);
 

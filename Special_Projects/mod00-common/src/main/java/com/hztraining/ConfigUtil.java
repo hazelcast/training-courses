@@ -3,9 +3,8 @@ package com.hztraining;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.hazelcast.client.config.ClientConfig;
-import com.hazelcast.client.spi.impl.discovery.HazelcastCloudDiscovery;
-import com.hazelcast.client.spi.properties.ClientProperty;
-import com.hazelcast.config.GroupConfig;
+import com.hazelcast.client.impl.spi.impl.discovery.HazelcastCloudDiscovery;
+import com.hazelcast.client.properties.ClientProperty;
 
 import java.net.URL;
 import java.util.Map;
@@ -105,7 +104,7 @@ public class ConfigUtil {
         }
 
         ClientConfig config = new ClientConfig();
-        config.setGroupConfig(new GroupConfig(cloudConfig.name, cloudConfig.password));
+        config.setClusterName(cloudConfig.name);
         config.setProperty("hazelcast.client.statistics.enabled", "true");
         if (cloudConfig.discoveryToken != null)
             config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), cloudConfig.discoveryToken);

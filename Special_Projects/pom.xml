@@ -17,7 +17,8 @@
   </modules>
 
   <properties>
-    <hazelcast.version>3.12</hazelcast.version>
+    <hazelcast.version>4.0</hazelcast.version>
+    <jet.version>4.0</jet.version>
   </properties>
 
   <build>
@@ -42,11 +43,7 @@
         <artifactId>hazelcast</artifactId>
         <version>${hazelcast.version}</version>
       </dependency>
-      <dependency>
-        <groupId>com.hazelcast</groupId>
-        <artifactId>hazelcast-client</artifactId>
-        <version>${hazelcast.version}</version>
-      </dependency>
+
       <dependency>
         <groupId>com.hazelcast</groupId>
         <artifactId>hazelcast-enterprise</artifactId>

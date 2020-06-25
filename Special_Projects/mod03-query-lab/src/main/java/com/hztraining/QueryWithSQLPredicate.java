@@ -4,12 +4,13 @@ import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
 import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.MapIndexConfig;
+import com.hazelcast.config.IndexConfig;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IMap;
+import com.hazelcast.map.IMap;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
-import com.hazelcast.query.SqlPredicate;
+import com.hazelcast.query.Predicate;
+import com.hazelcast.query.Predicates;
 import com.hztraining.inv.InventoryTable;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class QueryWithSQLPredicate {
 
     public Collection<Inventory> queryNearbyStores(IMap<InventoryKey, Inventory> invmap, String item, String[] locations) {
         String locnKeys = String.join(", ", locations);
-        SqlPredicate predicate = new SqlPredicate("sku=" + item +
+        Predicate predicate = Predicates.sql("sku=" + item +
                 " AND location in (" + locnKeys + ") " +
                 " AND quantity > 0");
         System.out.println("Query: " + predicate.toString());

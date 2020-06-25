@@ -5,7 +5,7 @@ import com.hazelcast.logging.Logger;
 
 import java.sql.*;
 
-/** Represents the MariaDB Inventory database */
+/** Represents the Inventory database */
 public class InventoryDB {
     private final static ILogger log = Logger.getLogger(InventoryDB.class);
 

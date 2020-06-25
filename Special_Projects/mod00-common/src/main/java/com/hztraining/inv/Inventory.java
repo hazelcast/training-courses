@@ -66,14 +66,17 @@ public class Inventory implements Serializable, IdentifiedDataSerializable {
     // IdentifiedDataSerializable implementation
     ////////////////
 
+    @Override
     public int getFactoryId() {
         return IDSFactory.FACTORY_ID;
     }
 
-    public int getId() {
+    @Override
+    public int getClassId() {
         return IDSFactory.IDS_INVENTORY;
     }
 
+    @Override
     public void writeData(ObjectDataOutput objectDataOutput) throws IOException {
         objectDataOutput.writeUTF(sku);
         objectDataOutput.writeUTF(description);
@@ -82,6 +85,7 @@ public class Inventory implements Serializable, IdentifiedDataSerializable {
         objectDataOutput.writeInt(quantity);
     }
 
+    @Override
     public void readData(ObjectDataInput objectDataInput) throws IOException {
         sku = objectDataInput.readUTF();
         description = objectDataInput.readUTF();
