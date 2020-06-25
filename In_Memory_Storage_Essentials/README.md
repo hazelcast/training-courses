@@ -1,1 +1,1 @@
-Old IMDG Essentials training, rehomed
+In Memory Storage Essentials training

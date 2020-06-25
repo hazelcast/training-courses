@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast</groupId>
-  <artifactId>lab01-FormCluster</artifactId>
+  <artifactId>lab02-BasicDataAccess-Embedded</artifactId>
   <version>1.0</version>
 
   <parent>
