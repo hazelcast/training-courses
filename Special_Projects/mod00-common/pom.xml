@@ -19,7 +19,7 @@
       <dependency>
           <groupId>com.hazelcast</groupId>
           <artifactId>hazelcast-client</artifactId>
-          <version>3.12</version>
+          <version>${hazelcast.version}</version>
       </dependency>
 
       <dependency>

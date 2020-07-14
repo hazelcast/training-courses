@@ -1,5 +1,5 @@
 ---
-defaultConfig: on-prem-cluster
+defaultConfig: personal-cluster
 
 clusterConfiguration:
 
@@ -11,8 +11,8 @@ clusterConfiguration:
   personal-cluster:
     # This is a free tier cluster set up by the student
     name: training
-    password: 0f4ac986fa964fb59accdee82bea2e53
-    discovery-token: r5tuQFu4brhQqRliPL4L04l8ceL5XdhWjgRbrveQ93nZuhRZEl
+    password: d81faa4ece434a60836a2ada29409079
+    discovery-token: Xee3SHoj9l5xUlIRbP2a2bGmKKpOtofApHO2G8OpCIQt6X2OoZ
     #url-base: https://coordinator.hazelcast.cloud
 
   shared-training-cluster:
