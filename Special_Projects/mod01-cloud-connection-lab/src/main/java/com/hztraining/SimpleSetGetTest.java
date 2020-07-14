@@ -2,6 +2,7 @@ package com.hztraining;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.client.properties.ClientProperty;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 
@@ -21,6 +22,12 @@ public class SimpleSetGetTest {
         // See IMDG Reference Manual:
         //  https://docs.hazelcast.org/docs/latest-dev/manual/html-single/#configuring-java-client
 
+        // student uncomments and fixes up this part ...
+//        config = new ClientConfig();
+//        config.setClusterName("TODO");
+//        config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "TODO");
+
+
         // You can also look at ConfigUtil.getClientConfigForCluster for hints
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
@@ -29,7 +36,7 @@ public class SimpleSetGetTest {
         // Both the key type and value type will be Strings
         IMap<String, String> map = client.getMap("map");
 
-        // Write an entry to the map
+        // Write an entry to the map.   map.put would also work.
         map.set("key", "my-value");
 
         // Read the entry just written, display it to confirm it matches.

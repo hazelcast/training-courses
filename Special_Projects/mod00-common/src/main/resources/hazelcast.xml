@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.12.xsd"
+<hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-4.0.xsd"
            xmlns="http://www.hazelcast.com/schema/config"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-  <management-center enabled="true">http://localhost:8080/hazelcast-mancenter</management-center>
 
   <!-- used by Module 3 query lab -->
   <user-code-deployment enabled="true">
@@ -37,20 +35,18 @@
     -->
   </map>
 
-  <!-- the following are not used by mainline labs, but allow additional extra credit
-       experimentation to be done on how these options affect query performance -->
   <map name="invmap_indexed">
     <indexes>
-      <index ordered="false">SKU</index>
-      <index ordered="false">location</index>
-    </indexes>
-  </map>
-
-  <map name="invmap_indexed_optimized">
-    <optimize-queries>true</optimize-queries>
-    <indexes>
-      <index ordered="false">SKU</index>
-      <index ordered="false">location</index>
+      <index>
+        <attributes>
+          <attribute>SKU</attribute>
+        </attributes>
+      </index>
+      <index>
+        <attributes>
+          <attribute>location</attribute>
+        </attributes>
+      </index>
     </indexes>
   </map>
 

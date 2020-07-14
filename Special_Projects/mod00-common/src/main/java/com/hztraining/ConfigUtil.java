@@ -35,7 +35,7 @@ public class ConfigUtil {
 
     static {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        Map<String, Map<String, Map>> properties = null;
+        //Map<String, Map<String, Map>> properties = null;
         ConfigInfo configInfo;
         try {
             URL yamlFile = ConfigUtil.class.getClassLoader().getResource("properties.yaml");
@@ -83,7 +83,7 @@ public class ConfigUtil {
 
     public static ClientConfig getClientConfigForCluster(String configname) {
         if (configname == null) {
-            System.out.println("No arg for cluster, properties.yaml default is " + defaultClusterName);
+            System.out.println("No command line argument for cluster, properties.yaml default is " + defaultClusterName);
             switch (defaultClusterName) {
                 case "on-prem-cluster": configname = "onprem"; break;
                 case "personal-cluster": configname = "personal"; break;
@@ -105,6 +105,7 @@ public class ConfigUtil {
 
         ClientConfig config = new ClientConfig();
         config.setClusterName(cloudConfig.name);
+
         config.setProperty("hazelcast.client.statistics.enabled", "true");
         if (cloudConfig.discoveryToken != null)
             config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), cloudConfig.discoveryToken);

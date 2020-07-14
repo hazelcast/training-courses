@@ -16,7 +16,7 @@
 
   <dependencies>
       <dependency>
-          <groupId>com.hazelcast</groupId>
+          <groupId>com.hztraining</groupId>
           <artifactId>mod00-common</artifactId>
           <version>1.0</version>
           <scope>compile</scope>
