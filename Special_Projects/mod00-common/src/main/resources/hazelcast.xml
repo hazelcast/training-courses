@@ -5,17 +5,19 @@
 
   <management-center enabled="true">http://localhost:8080/hazelcast-mancenter</management-center>
 
-  <!-- used by Module 3 query lab -->
+  <!-- used by Module 2 & 3 labs -->
   <user-code-deployment enabled="true">
     <class-cache-mode>ETERNAL</class-cache-mode>
     <provider-mode>LOCAL_AND_CACHED_CLASSES</provider-mode>
   </user-code-deployment>
 
+  <!--
   <serialization>
     <data-serializable-factories>
       <data-serializable-factory factory-id="42">com.hztraining.inv.IDSFactory</data-serializable-factory>
     </data-serializable-factories>
   </serialization>
+  -->
 
   <network>
     <join>
@@ -37,17 +39,9 @@
     -->
   </map>
 
-  <!-- the following are not used by mainline labs, but allow additional extra credit
+  <!-- the following is not used by mainline labs, but allow additional extra credit
        experimentation to be done on how these options affect query performance -->
   <map name="invmap_indexed">
-    <indexes>
-      <index ordered="false">SKU</index>
-      <index ordered="false">location</index>
-    </indexes>
-  </map>
-
-  <map name="invmap_indexed_optimized">
-    <optimize-queries>true</optimize-queries>
     <indexes>
       <index ordered="false">SKU</index>
       <index ordered="false">location</index>

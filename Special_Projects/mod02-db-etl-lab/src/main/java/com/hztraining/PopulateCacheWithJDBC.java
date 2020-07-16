@@ -5,6 +5,7 @@ import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.MapIndexConfig;
+import com.hazelcast.config.SerializationConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hztraining.inv.IDSFactory;
@@ -23,47 +24,33 @@ public class PopulateCacheWithJDBC {
 
         // ConfigUtil is in the common module
         String configname = ConfigUtil.findConfigNameInArgs(args);
-        ClientConfig config = ConfigUtil.getClientConfigForCluster(configname);
+        ClientConfig clientConfig = ConfigUtil.getClientConfigForCluster(configname);
 
-//        if (configname == null)
-//            configname = ConfigUtil.getDefaultConfigName();
-//        if (configname.contains("on-prem")) {
-//            // All JDBC access is on the client side, so not clear why on-prem deployment
-//            // fails if it doesn't find
-//            System.out.println("Using UCD for on-prem deployment");
-//            StringBuilder maria = new StringBuilder();
-//            maria.append(System.getProperty("user.home"));
-//            maria.append("/.m2/repository");
-//            maria.append("/org/mariadb/jdbc/mariadb-java-client");
-//            maria.append("/2.4.4");
-//            maria.append("/mariadb-java-client-2.4.4.jar");
-//            String mariaJar = maria.toString();
-////
-////        // Without mariaJar we fail to load org.mariadb.jdbc.Driver
-////        // with mariaJar, we get further, but fail on another file (RowProtocol)
-////        // that is in the same jar
-////
-////        // TODO: have to solve UCD inconsistency, mariaJar and InventoryTable will cause
-////        // failure on cloud.
-            ClientUserCodeDeploymentConfig ucd = config.getUserCodeDeploymentConfig();
-            ucd.setEnabled(true);
-//            ucd.addJar(mariaJar);
-            ucd.addClass(Inventory.class);
-            ucd.addClass(IDSFactory.class);
-//            ucd.addClass(InventoryTable.class);
-//        }
+        // This isn't needed for the non-indexed case; but when building indexes
+        // the cluster member must be able to deserialize the data in order
+        // to extract field values that are to be indexed.
+        // (This will work for on-premise as well as cloud; but for on-premise
+        //  an alternative is simply to have the classes on the classpath of the
+        //  members)
+        ClientUserCodeDeploymentConfig ucd = clientConfig.getUserCodeDeploymentConfig();
+        ucd.setEnabled(true);
+        ucd.addClass(Inventory.class);
+        //ucd.addClass(InventoryKey.class);
+        //ucd.addClass(IDSFactory.class);
 
-        HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
+        HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
 
-        System.out.println("Configuring indexed version of map");
-        MapConfig indexedConfig = new MapConfig();
-        indexedConfig.setName("invmap_indexed");
-        List<MapIndexConfig> indexConfigs = new ArrayList<>();
-        indexConfigs.add(new MapIndexConfig("SKU", false));
-        indexConfigs.add(new MapIndexConfig("location", false));
-        indexedConfig.setMapIndexConfigs(indexConfigs);
+//        System.out.println("Configuring indexed version of map");
+//        MapConfig indexedConfig = new MapConfig();
+//        indexedConfig.setName("invmap_indexed");
+//        List<MapIndexConfig> indexConfigs = new ArrayList<>();
+//        indexConfigs.add(new MapIndexConfig("SKU", false));
+//        indexConfigs.add(new MapIndexConfig("location", false));
+//        indexedConfig.setMapIndexConfigs(indexConfigs);
 
+        // TODO: Get a reference to the invmap map
         IMap<InventoryKey, Inventory> invmap = client.getMap("invmap");
+        // TODO: Get a reference to the invmap_indexed map
         IMap<InventoryKey, Inventory> invmapi = client.getMap("invmap_indexed");
 
         long start = System.nanoTime();
@@ -79,6 +66,7 @@ public class PopulateCacheWithJDBC {
         }
         try {
             System.out.println("Starting putAll");
+            // TODO: put data into the invmap map
             invmap.putAll(localMap);
             long finish = System.nanoTime();
             long elapsedNanos = finish - start;
@@ -89,6 +77,7 @@ public class PopulateCacheWithJDBC {
             // significantly faster than when adding the indexes.
 
             start = System.nanoTime();
+            // TODO: put data into the invmap_indexed map
             invmapi.putAll(localMap);
             finish = System.nanoTime();
             elapsedNanos = finish - start;

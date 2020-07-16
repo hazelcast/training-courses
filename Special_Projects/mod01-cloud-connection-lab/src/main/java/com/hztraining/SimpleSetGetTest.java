@@ -2,6 +2,8 @@ package com.hztraining;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.client.spi.properties.ClientProperty;
+import com.hazelcast.config.GroupConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 
@@ -21,7 +23,11 @@ public class SimpleSetGetTest {
         // See IMDG Reference Manual:
         //  https://docs.hazelcast.org/docs/latest-dev/manual/html-single/#configuring-java-client
 
-        // You can also look at ConfigUtil.getClientConfigForCluster for hints
+        // TODO: student uncomments and fixes up this part ...
+//        config = new ClientConfig();
+//        GroupConfig gconfig = new GroupConfig("training", "PASSWORD");
+//        config.setGroupConfig(gconfig);
+//        config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "TODO");
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 

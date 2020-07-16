@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /** Inventory database and IMap have a compound key consisting of SKU and Location */
-public class InventoryKey implements Serializable, IdentifiedDataSerializable {
+public class InventoryKey implements Serializable {
     private String SKU;
     private String location;
 
@@ -27,6 +27,8 @@ public class InventoryKey implements Serializable, IdentifiedDataSerializable {
     public String toString() {
         return SKU + location;
     }
+
+    // IdentifiedDataSerializable implementation (not in use at the moment)
 
     public int getFactoryId() {
         return IDSFactory.FACTORY_ID;

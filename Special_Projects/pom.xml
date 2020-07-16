@@ -14,10 +14,12 @@
     <module>mod01-cloud-connection-lab</module>
     <module>mod02-db-etl-lab</module>
     <module>mod03-query-lab</module>
+    <module>mod04-aggregation-lab</module>
   </modules>
 
   <properties>
     <hazelcast.version>3.12</hazelcast.version>
+    <hazelcast.jet.version>3.2.2</hazelcast.jet.version>
   </properties>
 
   <build>

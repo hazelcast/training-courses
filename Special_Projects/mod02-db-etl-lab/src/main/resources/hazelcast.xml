@@ -14,4 +14,29 @@
     </join>
   </network>
   <management-center enabled="true">https://localhost:8080/hazelcast-mancenter</management-center>
+
+  <serialization>
+    <data-serializable-factories>
+      <data-serializable-factory factory-id="42">com.hztraining.inv.IDSFactory</data-serializable-factory>
+    </data-serializable-factories>
+  </serialization>
+
+  <map name="invmap">
+    <in-memory-format>BINARY</in-memory-format>
+    <!--
+    <map-store>
+      <class-name>com.hztraining.inv.InventoryTable</class-name>
+    </map-store>
+    -->
+  </map>
+
+  <!-- the following is not used by mainline labs, but allow additional extra credit
+       experimentation to be done on how these options affect query performance -->
+  <map name="invmap_indexed">
+    <indexes>
+      <index ordered="false">SKU</index>
+      <index ordered="false">location</index>
+    </indexes>
+  </map>
+
 </hazelcast>

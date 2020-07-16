@@ -1,0 +1,15 @@
+<hazelcast-client xsi:schemaLocation="http://www.hazelcast.com/schema/client-config hazelcast-client-config-3.12.xsd"
+                  xmlns="http://www.hazelcast.com/schema/client-config"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- NOTE THIS IS NOT CURRENTLY BEING USED - client config is programmatic -->
+
+    <serialization>
+        <data-serializable-factories>
+            <data-serializable-factory factory-id="42">com.hztraining.inv.IDSFactory</data-serializable-factory>
+        </data-serializable-factories>
+    </serialization>
+    
+    <user-code-deployment enabled="true"></user-code-deployment>
+    
+</hazelcast-client>
