@@ -21,6 +21,12 @@ public class ClearInventoryMap {
         System.out.println("Map contained " + invMap.size() + " entries");
         invMap.clear();
         System.out.println("Map cleared, size now " + invMap.size());
+
+        invMap = client.getMap("invmap");
+        System.out.println("Indexed Map contained " + invMap.size() + " entries");
+        invMap.clear();
+        System.out.println("Indexed Map cleared, size now " + invMap.size());
+
         client.shutdown();
     }
 }

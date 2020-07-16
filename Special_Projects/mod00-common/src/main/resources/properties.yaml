@@ -1,5 +1,5 @@
 ---
-defaultConfig: on-prem-cluster
+defaultConfig: personal-cluster
 
 clusterConfiguration:
 
