@@ -11,9 +11,10 @@ clusterConfiguration:
   personal-cluster:
     # This is a free tier cluster set up by the student
     name: training
-    password: 2e6ef0001de2402d8f30ec79b4040319
-    discovery-token: ZJrY2Fb5t7Hy3fwREMTFHTXGZpC2PjIvGpQyCZdxIGXPrOPgKu
-    #url-base: https://coordinator.hazelcast.cloud
+    password: 0d0ede07aeb24be7918edec944aad422
+    discovery-token: DQCFuGTkz3e9tiDQY9CBX5yejF6loX5t3Nnk1Va3ZmcJllhTHu
+    # TODO: comment this back out after finished testing in UAT!
+    url-base: https://uat.hazelcast.cloud
 
   shared-training-cluster:
     # This is a (proposed, not yet implemented) cluster maintained by the education team.   Starter, most likely,
@@ -24,8 +25,8 @@ clusterConfiguration:
 
   # Hazelcast Cloud Enterprise - Single tenant, suitable for enterprise deployments.  Pay-as-you-go and contracted tiers.
   enterprise-cluster:
-    name: demo
-    password:
-    discovery-token:
+    name: training-ent-aws
+    password: 738184083493413a83d0c6519fd7f757
+    discovery-token: up8Lj9qxdkNWEFUbZ6kDm8iMRZm1p8THlWi9iyjnMEhoNU9yfE
     #url-base: https://ea.test.hazelcast.cloud
     # may add SSL properties here also ... but code doesn't handle them yet

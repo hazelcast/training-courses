@@ -34,12 +34,12 @@ public class Aggregation {
         // See https://docs.hazelcast.org/docs/latest/manual/html-single/#built-in-aggregations
 
         long start = System.currentTimeMillis();
-        long totalOnHand = 0; // TODO:
+        long totalOnHand = 0; // TODO: aggregate against the unindexed map
         long elapsed = System.currentTimeMillis() - start;
         System.out.printf("Total on hand for %s = %d (elapsed %d ms)\n", sku, totalOnHand, elapsed);
 
         start = System.currentTimeMillis();
-        totalOnHand = 0; // TODO
+        totalOnHand = 0; // TODOL aggregate against the indexed map
         elapsed = System.currentTimeMillis() - start;
         System.out.printf("Total on hand for %s = %d (elapsed %d ms using indexed map)\n", sku, totalOnHand, elapsed);
 
