@@ -11,7 +11,7 @@ import java.util.Random;
 /** An Inventory item.   Used to represent items in the InventoryDB database as well as
  * the invmap IMap
  */
-public class Inventory implements Serializable, IdentifiedDataSerializable {
+public class Inventory implements Serializable {
 
     private String sku;
     private String description;

@@ -1,27 +1,20 @@
-package com.hztraining;
+package com.hztraining.solutions;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
-import com.hazelcast.config.IndexConfig;
-import com.hazelcast.config.IndexType;
-import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.IndexConfig;
-import com.hazelcast.config.MapIndexConfig;
-import com.hazelcast.config.SerializationConfig;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.map.IMap;
-import com.hztraining.inv.IDSFactory;
+import com.hazelcast.core.IMap;
+import com.hztraining.ConfigUtil;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
 import com.hztraining.inv.InventoryTable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PopulateCacheWithJDBC {
+public class PopulateCacheWithJDBCSolution {
 
     public static void main(String[] args) {
 
@@ -39,14 +32,15 @@ public class PopulateCacheWithJDBC {
         ucd.setEnabled(true);
         ucd.addClass(Inventory.class);
 
-        HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
+        HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
 
         // TODO: Get a reference to the invmap map
-        IMap<InventoryKey, Inventory> invmap = null;
+        IMap<InventoryKey, Inventory> invmap = client.getMap("invmap");
         // TODO: Get a reference to the invmap_indexed map
-        IMap<InventoryKey, Inventory> invmapi = null;
+        IMap<InventoryKey, Inventory> invmapi = client.getMap("invmap_indexed");
 
-        // Load database data into a Java HashMap
+        long start = System.nanoTime();
+        int counter=0;
         InventoryTable table = new InventoryTable();
         List<Inventory> items = table.readAllFromDatabase(); // Less than 2 seconds to do this
         Map<InventoryKey, Inventory> localMap = new HashMap<>();
@@ -54,12 +48,28 @@ public class PopulateCacheWithJDBC {
             InventoryKey key = new InventoryKey(item.getSKU(), item.getLocation());
             localMap.put(key, item);
             //invmap.put(key, item); // NO - will take 30 minutes to load one-at-a-time this way!
+            counter++;
         }
         try {
+            System.out.println("Starting putAll");
             // TODO: put data into the invmap map
+            invmap.putAll(localMap);
+            long finish = System.nanoTime();
+            long elapsedNanos = finish - start;
+            double elapsedSeconds = (double) elapsedNanos / 1_000_000_000D;
+            System.out.printf("Finished unindexed map in %3.3f seconds [includes db fetch]\n", elapsedSeconds);
+            // Note above includes retrieval from DB so not a straight comparison with put to
+            // indexed map -- but even making the first measurement include db access it is still
+            // significantly faster than when adding the indexes.
 
-            // TODO: put the same data into the invmap_indexed map
-
+            start = System.nanoTime();
+            // TODO: put data into the invmap_indexed map
+            invmapi.putAll(localMap);
+            finish = System.nanoTime();
+            elapsedNanos = finish - start;
+            elapsedSeconds = (double) elapsedNanos / 1_000_000_000D;
+            System.out.printf("Finished indexed map in %3.3f seconds\n", elapsedSeconds);
+            System.out.println("Final entry count " + counter);
         } finally {
             client.shutdown();
         }

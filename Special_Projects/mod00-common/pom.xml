@@ -8,6 +8,7 @@
   <artifactId>mod00-common</artifactId>
   <version>1.0</version>
 
+
   <parent>
     <groupId>com.hztraining</groupId>
       <artifactId>cloud-based-training</artifactId>
@@ -20,16 +21,19 @@
           <artifactId>hazelcast</artifactId>
           <version>${hazelcast.version}</version>
       </dependency>
+
       <dependency>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-databind</artifactId>
           <version>2.10.2</version>
       </dependency>
+
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-yaml</artifactId>
         <version>2.10.2</version>
       </dependency>
+
       <dependency>
           <groupId>org.mariadb.jdbc</groupId>
           <artifactId>mariadb-java-client</artifactId>

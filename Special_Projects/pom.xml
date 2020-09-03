@@ -14,6 +14,7 @@
     <module>mod01-cloud-connection-lab</module>
     <module>mod02-db-etl-lab</module>
     <module>mod03-query-lab</module>
+    <module>mod04-aggregation-lab</module>
   </modules>
 
   <properties>

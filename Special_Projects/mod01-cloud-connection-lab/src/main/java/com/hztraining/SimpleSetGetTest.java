@@ -2,7 +2,6 @@ package com.hztraining;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
-import com.hazelcast.client.properties.ClientProperty;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 
@@ -36,7 +35,7 @@ public class SimpleSetGetTest {
         // Both the key type and value type will be Strings
         IMap<String, String> map = client.getMap("map");
 
-        // Write an entry to the map.   map.put would also work.
+        // Write an entry to the map
         map.set("key", "my-value");
 
         // Read the entry just written, display it to confirm it matches.

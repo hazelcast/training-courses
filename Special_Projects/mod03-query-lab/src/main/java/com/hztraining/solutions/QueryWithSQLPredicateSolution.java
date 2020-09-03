@@ -1,31 +1,26 @@
-package com.hztraining;
+package com.hztraining.solutions;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
-import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.MapIndexConfig;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.map.IMap;
+import com.hazelcast.core.IMap;
+import com.hazelcast.query.SqlPredicate;
+import com.hztraining.ConfigUtil;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
-import com.hazelcast.query.Predicate;
-import com.hazelcast.query.Predicates;
-import com.hztraining.inv.InventoryTable;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
-public class QueryWithSQLPredicate {
+public class QueryWithSQLPredicateSolution {
 
     private HazelcastInstance client;
     private static long start;
 
     public Collection<Inventory> queryNearbyStores(IMap<InventoryKey, Inventory> invmap, String item, String[] locations) {
         String locnKeys = String.join(", ", locations);
-        Predicate predicate = Predicates.sql("sku=" + item +
+        SqlPredicate predicate = new SqlPredicate("sku=" + item +
                 " AND location in (" + locnKeys + ") " +
                 " AND quantity > 0");
         System.out.println("Query: " + predicate.toString());
@@ -42,10 +37,9 @@ public class QueryWithSQLPredicate {
         ClientUserCodeDeploymentConfig ucd = config.getUserCodeDeploymentConfig();
         ucd.setEnabled(true);
         ucd.addClass(Inventory.class);
-        //ucd.addClass(InventoryTable.class); // local only, because defined as MapLoader
 
         // Query using SQLPredicate
-        QueryWithSQLPredicate main = new QueryWithSQLPredicate();
+        QueryWithSQLPredicateSolution main = new QueryWithSQLPredicateSolution();
         main.client = HazelcastClient.newHazelcastClient(config);
 
         try {
@@ -59,12 +53,17 @@ public class QueryWithSQLPredicate {
             // Without index
             IMap<InventoryKey, Inventory> invmap = main.client.getMap("invmap");
             Collection<Inventory> nearby = main.queryNearbyStores(invmap, item, stores);
+            long elapsed = System.currentTimeMillis() - start;
+            System.out.printf("%d items matched query in %dms\n", nearby.size(), elapsed);
             for (Inventory i : nearby)
                 System.out.println(i);
 
             // With index
+            start = System.currentTimeMillis();
             IMap<InventoryKey, Inventory> invmapi = main.client.getMap("invmap_indexed");
             nearby = main.queryNearbyStores(invmapi, item, stores);
+            elapsed = System.currentTimeMillis() - start;
+            System.out.printf("%d items matched indexed query in %dms\n", nearby.size(), elapsed);
             for (Inventory i : nearby)
                 System.out.println(i);
 
