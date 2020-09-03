@@ -4,8 +4,8 @@ import com.hazelcast.aggregation.Aggregators;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IMap;
-import com.hazelcast.query.SqlPredicate;
+import com.hazelcast.map.IMap;
+import com.hazelcast.query.impl.predicates.SqlPredicate;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
 

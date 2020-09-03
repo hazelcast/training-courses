@@ -8,7 +8,6 @@
   <artifactId>mod00-common</artifactId>
   <version>1.0</version>
 
-
   <parent>
     <groupId>com.hztraining</groupId>
       <artifactId>cloud-based-training</artifactId>

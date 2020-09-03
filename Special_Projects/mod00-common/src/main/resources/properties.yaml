@@ -1,5 +1,5 @@
 ---
-defaultConfig: on-prem-cluster
+defaultConfig: personal-cluster
 
 clusterConfiguration:
 
@@ -11,8 +11,8 @@ clusterConfiguration:
   personal-cluster:
     # This is a free tier cluster set up by the student
     name: training
-    password: 0d0ede07aeb24be7918edec944aad422
-    discovery-token: DQCFuGTkz3e9tiDQY9CBX5yejF6loX5t3Nnk1Va3ZmcJllhTHu
+    password: 70b7462549ca485a9639679ae77e35c1
+    discovery-token: xlXHq5SflBQrstDD7AzYglXmuro2lzxswsOjpZyoGCiK4DHNH3
     # TODO: comment this back out after finished testing in UAT!
     url-base: https://uat.hazelcast.cloud
 

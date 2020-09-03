@@ -3,15 +3,8 @@ package com.hztraining;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
-import com.hazelcast.config.IndexConfig;
-import com.hazelcast.config.IndexType;
-import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.IndexConfig;
-import com.hazelcast.config.MapIndexConfig;
-import com.hazelcast.config.SerializationConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
-import com.hztraining.inv.IDSFactory;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
 import com.hztraining.inv.InventoryTable;
@@ -39,7 +32,7 @@ public class PopulateCacheWithJDBC {
         ucd.setEnabled(true);
         ucd.addClass(Inventory.class);
 
-        HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
+        HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
 
         // TODO: Get a reference to the invmap map
         IMap<InventoryKey, Inventory> invmap = null;

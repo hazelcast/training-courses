@@ -2,7 +2,6 @@ package com.hztraining.inv;
 
 import com.hazelcast.nio.ObjectDataInput;
 import com.hazelcast.nio.ObjectDataOutput;
-import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -66,17 +65,17 @@ public class Inventory implements Serializable {
     // IdentifiedDataSerializable implementation
     ////////////////
 
-    @Override
+    //@Override
     public int getFactoryId() {
         return IDSFactory.FACTORY_ID;
     }
 
-    @Override
+    //@Override
     public int getClassId() {
         return IDSFactory.IDS_INVENTORY;
     }
 
-    @Override
+    //@Override
     public void writeData(ObjectDataOutput objectDataOutput) throws IOException {
         objectDataOutput.writeUTF(sku);
         objectDataOutput.writeUTF(description);
@@ -85,7 +84,7 @@ public class Inventory implements Serializable {
         objectDataOutput.writeInt(quantity);
     }
 
-    @Override
+    //@Override
     public void readData(ObjectDataInput objectDataInput) throws IOException {
         sku = objectDataInput.readUTF();
         description = objectDataInput.readUTF();

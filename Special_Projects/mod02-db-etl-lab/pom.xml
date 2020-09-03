@@ -33,9 +33,7 @@
           <groupId>com.hztraining</groupId>
           <artifactId>mod00-common</artifactId>
           <version>1.0</version>
-          <scope>compile</scope>
       </dependency>
-      <!-- Add the Hazelcast client dependency -->
 
   </dependencies>
 </project>

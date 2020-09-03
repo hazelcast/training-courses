@@ -19,7 +19,7 @@
 
   <properties>
     <hazelcast.version>4.0</hazelcast.version>
-    <jet.version>4.0</jet.version>
+    <hazelcast.jet.version>4.0</hazelcast.jet.version>
   </properties>
 
   <build>

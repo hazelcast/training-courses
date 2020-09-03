@@ -4,8 +4,8 @@ import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IMap;
-import com.hazelcast.query.SqlPredicate;
+import com.hazelcast.map.IMap;
+import com.hazelcast.query.impl.predicates.SqlPredicate;
 import com.hztraining.ConfigUtil;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
@@ -23,7 +23,7 @@ public class QueryWithSQLPredicateSolution {
         SqlPredicate predicate = new SqlPredicate("sku=" + item +
                 " AND location in (" + locnKeys + ") " +
                 " AND quantity > 0");
-        System.out.println("Query: " + predicate.toString());
+        System.out.println("Query: " + predicate.toString() + " on map: " + invmap.getName());
         start = System.currentTimeMillis();
         Collection<Inventory> results = invmap.values(predicate);
         return results;
@@ -54,7 +54,7 @@ public class QueryWithSQLPredicateSolution {
             IMap<InventoryKey, Inventory> invmap = main.client.getMap("invmap");
             Collection<Inventory> nearby = main.queryNearbyStores(invmap, item, stores);
             long elapsed = System.currentTimeMillis() - start;
-            System.out.printf("%d items matched query in %dms\n", nearby.size(), elapsed);
+            System.out.printf("%d items matched unindexed query in %dms\n", nearby.size(), elapsed);
             for (Inventory i : nearby)
                 System.out.println(i);
 
