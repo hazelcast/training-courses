@@ -41,8 +41,16 @@
        experimentation to be done on how these options affect query performance -->
   <map name="invmap_indexed">
     <indexes>
-      <index ordered="false">SKU</index>
-      <index ordered="false">location</index>
+      <index type="HASH">
+        <attributes>
+          <attribute>SKU</attribute>
+        </attributes>
+      </index>
+      <index type="HASH">
+        <attributes>
+          <attribute>location</attribute>
+        </attributes>
+      </index>
     </indexes>
   </map>
 
