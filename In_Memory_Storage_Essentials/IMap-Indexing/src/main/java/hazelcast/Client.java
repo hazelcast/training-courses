@@ -1,6 +1,8 @@
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
+import com.hazelcast.config.IndexConfig;
+import com.hazelcast.config.IndexType;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.hazelcast.query.impl.predicates.SqlPredicate;
@@ -15,8 +17,8 @@ public class Client {
         //Setting up cloud configuration
         ClientConfig config = new ClientConfig();
         config.setProperty(STATISTICS_ENABLED.getName(), "true");
-        config.setProperty(HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
-        config.setClusterName("YOUR_CLUSTER_NAME");
+        config.setProperty(HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "KrvSB8iAj6j2urw3VLYfYO533sbwNsLsxmtSzCRPencXs47Dzr");
+        config.setClusterName("ayberk");
 
         // Making Employee class available at the Cloud side through User Code Deployment
         ClientUserCodeDeploymentConfig clientUserCodeDeploymentConfig = new ClientUserCodeDeploymentConfig();
@@ -28,12 +30,14 @@ public class Client {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
         // Create a Hazelcast backed map
-        IMap<Integer, Employee> map = client.getMap("training-index");
+        IMap<Integer, Employee> map = client.getMap("training-indexxx");
+
+        map.addIndex(new IndexConfig(IndexType.SORTED, "salary"));
 
         // Write elements to the map
         System.out.print("Pushing data... ");
         long start1 = System.currentTimeMillis();
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<10000; i++) {
             Employee emp = new Employee(new Random().nextInt(5000));
             map.put(i, emp);
         }
