@@ -56,8 +56,7 @@ public class Client {
         SqlPredicate predicate = new SqlPredicate("salary between 0 and 2000");
         Collection<Employee> users = map.values(predicate);
 
-        long delta2 = System.currentTimeMillis() - start2;
-        System.out.println("done. " + delta2 + " ms");
+        System.out.println("done.");
 
         // Printing out the result size
         for (Employee emp : users) {

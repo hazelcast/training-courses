@@ -59,8 +59,7 @@ public class Client {
         // Either predicate here should return same result
         Collection<Employee> matches = map.values(/**Either predicate should work*/);
 
-        long delta2 = System.currentTimeMillis() - start2;
-        System.out.println("done. " + delta2 + " ms");
+        System.out.println("done.");
 
         //  Print out the results
         for (Employee emp : matches) {

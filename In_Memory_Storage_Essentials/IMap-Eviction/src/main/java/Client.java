@@ -24,14 +24,19 @@ public class Client {
         // Create a Hazelcast backed map
         IMap<Integer, String> map = client.getMap("training-eviction");
 
+        int NUMBER_OF_ITEMS_TO_LOAD = 25000;
 
         // Write elements to the map
-        for (int i = 0; i < 25000; i++) {
+        for (int i = 0; i < NUMBER_OF_ITEMS_TO_LOAD; i++) {
             int key = i;
             String value = String.valueOf(i);
 
             // Put the entry into the map
             map.put(key, value);
+
+            if (i % 100 == 0){
+                System.out.println("Number of loaded items: "+i +" out of "+NUMBER_OF_ITEMS_TO_LOAD);
+            }
         }
 
         // Checking map size to observe eviction

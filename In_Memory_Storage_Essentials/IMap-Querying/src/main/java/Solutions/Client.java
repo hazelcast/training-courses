@@ -4,6 +4,7 @@ import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
 import com.hazelcast.client.properties.ClientProperty;
+import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.hazelcast.query.Predicate;
@@ -32,7 +33,6 @@ public class Client {
         clientUserCodeDeploymentConfig.addClass(hazelcast.Employee.class);
         clientUserCodeDeploymentConfig.setEnabled(true);
         config.setUserCodeDeploymentConfig(clientUserCodeDeploymentConfig);
-
 
         // Create Hazelcast instance which is backed by a client
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
@@ -66,8 +66,7 @@ public class Client {
         // Either predicate here should return same result
         Collection<Employee> matches = map.values(p2);
 
-        long delta2 = System.currentTimeMillis() - start2;
-        System.out.println("done. " + delta2 + " ms");
+        System.out.println("done.");
 
         //  Print out the results
         for (Employee emp : matches) {
