@@ -4,9 +4,15 @@ import java.io.Serializable;
 
 public class Employee implements Serializable {
     private int salary;
+    private int age;
 
-    public Employee(int salary) {
+    public Employee( int age,int salary) {
         this.salary = salary;
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public int getSalary() {
@@ -17,3 +23,4 @@ public class Employee implements Serializable {
         salary += delta;
     }
 }
+

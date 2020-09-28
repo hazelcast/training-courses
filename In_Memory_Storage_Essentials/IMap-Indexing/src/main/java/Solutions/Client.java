@@ -44,7 +44,7 @@ public class Client {
         System.out.print("Pushing data... ");
         long start1 = System.currentTimeMillis();
         for (int i=0; i<100; i++) {
-            Employee emp = new Employee(new Random().nextInt(5000));
+            Employee emp = new Employee(20 + new Random().nextInt(30), new Random().nextInt(5000));
             map.put(i, emp);
         }
         long delta1 = System.currentTimeMillis() - start1;

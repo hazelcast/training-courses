@@ -35,9 +35,9 @@ public class NaiveProcessingClient {
         IMap<String, Employee> employees = client.getMap("training-np");
 
         // Add several Employees with unique keys and different salaries to the map
-        employees.put("John", new Employee(1000));
-        employees.put("Mark", new Employee(1000));
-        employees.put("Spencer", new Employee(1000));
+        employees.put("John", new Employee(20,1000));
+        employees.put("Mark", new Employee(30,1000));
+        employees.put("Spencer", new Employee(40,1000));
 
         /**
          * Without using EP, increment the salary of each employee
