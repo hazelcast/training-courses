@@ -22,9 +22,9 @@ public class Client1 {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
         /**
-         * Create a Hazelcast backed map named "training"
+         * Create a Hazelcast backed map
          * */
-        IMap<Integer, String> map = client.getMap("training");
+        IMap<Integer, String> map = client.getMap("training-get-put-solution");
 
         // Write the 1000 elements to the map
         for (int i = 0; i < 1000; i++) {

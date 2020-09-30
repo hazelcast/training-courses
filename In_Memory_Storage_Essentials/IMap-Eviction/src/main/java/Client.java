@@ -35,7 +35,7 @@ public class Client {
             map.put(key, value);
 
             if (i % 100 == 0){
-                System.out.println("Number of loaded items: "+i +" out of "+NUMBER_OF_ITEMS_TO_LOAD);
+                System.out.println("Number of loaded items: " + i + " out of " + NUMBER_OF_ITEMS_TO_LOAD);
             }
         }
 

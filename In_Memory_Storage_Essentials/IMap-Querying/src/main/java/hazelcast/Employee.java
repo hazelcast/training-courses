@@ -4,8 +4,7 @@ import com.hazelcast.nio.serialization.PortableFactory;
 import com.hazelcast.nio.serialization.PortableReader;
 import com.hazelcast.nio.serialization.PortableWriter;
 import java.io.IOException;
-import java.io.Serializable;
-import java.io.Serializable;
+
 public class Employee implements Portable {
     public static final int CLASS_ID = 1;
     public static final int FACTORY_ID = 5;
@@ -59,4 +58,9 @@ public class Employee implements Portable {
                 return null;
         }
     }
+    @Override
+    public String toString(){
+        return "Employee with age: " + String.valueOf(age) + " and salary: " + String.valueOf(salary);
+    }
 }
+

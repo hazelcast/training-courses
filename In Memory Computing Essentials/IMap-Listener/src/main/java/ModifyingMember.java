@@ -21,7 +21,7 @@ public class ModifyingMember {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
         // Create a Hazelcast backed map
-        IMap<String, String> map = client.getMap( "training-l");
+        IMap<String, String> map = client.getMap( "training-listener");
 
         //Add, modify and delete items to trigger listeners
         String key = "" + System.nanoTime();

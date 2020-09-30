@@ -21,9 +21,9 @@ public class Client2 {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
         /**
-         * Create a Hazelcast backed map named "training"
+         * Create a Hazelcast backed map
          * */
-        IMap<Integer, String> map = client.getMap("training");
+        IMap<Integer, String> map = client.getMap("training-get-put-solution");
 
         /**
          * Get key 42 from the map and store the value

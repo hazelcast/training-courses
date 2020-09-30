@@ -24,7 +24,7 @@ public class ListeningMember {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
         // Create a Hazelcast backed map
-        IMap<String, String> map = client.getMap( "training-l");
+        IMap<String, String> map = client.getMap( "training-listener");
 
         /**
          * Add an EntryListener object to the IMap

@@ -20,7 +20,7 @@ public class Client1 {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
         /**
-         * Create a Hazelcast backed map named "training"
+         * Create a Hazelcast backed map
          * */
 
         // Write the 1000 elements to the map

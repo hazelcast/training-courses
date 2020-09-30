@@ -10,9 +10,6 @@ import com.hazelcast.map.EntryProcessor;
 import com.hazelcast.map.IMap;
 import hazelcast.Employee;
 
-import static com.hazelcast.client.properties.ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN;
-import static com.hazelcast.client.properties.ClientProperty.STATISTICS_ENABLED;
-
 public class EntryProcessorClient {
     public static void main(String[] args) {
         // If you are using the cloud to host your cluster, make sure you add the client credentials!
@@ -22,9 +19,7 @@ public class EntryProcessorClient {
         config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
         config.setClusterName("YOUR_CLUSTER_NAME");
 
-
-
-        // Making Employee class available at the Cloud side through User Code Deployment
+        // Making Employee class available through User Code Deployment
         ClientUserCodeDeploymentConfig clientUserCodeDeploymentConfig = new ClientUserCodeDeploymentConfig();
         clientUserCodeDeploymentConfig.addClass(hazelcast.Employee.class);
         clientUserCodeDeploymentConfig.addClass(Solutions.EntryProcessorClient.class);
@@ -33,11 +28,9 @@ public class EntryProcessorClient {
 
         // Create Hazelcast instance which is backed by a client
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
-
-
-
         // Create a Hazelcast backed map
         IMap<String, Employee> employees = client.getMap("training-ep");
+
 
         // Add several Employees with unique keys and different salaries to the map
         employees.put("John", new Employee(20,1000));
@@ -57,8 +50,7 @@ public class EntryProcessorClient {
         for (IMap.Entry<String, Employee> entry : employees.entrySet()) {
             System.out.println(entry.getKey() + " salary: " + entry.getValue().getSalary());
         }
-
-        Hazelcast.shutdownAll();
+        client.shutdown();
     }
 
 }

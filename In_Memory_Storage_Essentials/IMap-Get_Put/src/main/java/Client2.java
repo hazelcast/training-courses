@@ -19,7 +19,7 @@ public class Client2 {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
         /**
-         * Create a Hazelcast backed map named "training"
+         * Create a Hazelcast backed map
          * */
 
         /**

@@ -8,9 +8,6 @@ import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 
-import static com.hazelcast.client.properties.ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN;
-import static com.hazelcast.client.properties.ClientProperty.STATISTICS_ENABLED;
-
 public class NaiveProcessingClient {
 
     public static void main(String[] args) {
@@ -21,10 +18,10 @@ public class NaiveProcessingClient {
         config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
         config.setClusterName("YOUR_CLUSTER_NAME");
 
-        // Making Employee class available at the Cloud side through User Code Deployment
+        // Making Employee class available through User Code Deployment
         ClientUserCodeDeploymentConfig clientUserCodeDeploymentConfig = new ClientUserCodeDeploymentConfig();
-        clientUserCodeDeploymentConfig.addClass(Employee.class);
-        clientUserCodeDeploymentConfig.addClass(hazelcast.EntryProcessorClient.class);
+        clientUserCodeDeploymentConfig.addClass(hazelcast.Employee.class);
+        clientUserCodeDeploymentConfig.addClass(Solutions.EntryProcessorClient.class);
         clientUserCodeDeploymentConfig.setEnabled(true);
         config.setUserCodeDeploymentConfig(clientUserCodeDeploymentConfig);
 
@@ -49,7 +46,7 @@ public class NaiveProcessingClient {
             System.out.println(entry.getKey() + " salary: " + entry.getValue().getSalary());
         }
 
-        Hazelcast.shutdownAll();
+        client.shutdown();
     }
 
 }
