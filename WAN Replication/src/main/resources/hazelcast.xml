@@ -1,0 +1,31 @@
+<hazelcast xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.hazelcast.com/schema/config
+                               http://www.hazelcast.com/schema/config/hazelcast-config-4.0.xsd"
+           xmlns="http://www.hazelcast.com/schema/config">
+
+    <cluster-name>clusterA</cluster-name>
+    <license-key></license-key>
+
+    <network>
+        <port>5701</port>
+        <join>
+            <multicast enabled="false"/>
+            <tcp-ip enabled="true">
+                <member>127.0.0.1:5701</member>
+            </tcp-ip>
+        </join>
+    </network>
+
+    <wan-replication name="AtoB">
+        <batch-publisher>
+            <cluster-name>clusterB</cluster-name>
+            <target-endpoints>127.0.0.1:5702</target-endpoints>
+        </batch-publisher>
+
+    </wan-replication>
+    <map name="default">
+        <wan-replication-ref name="AtoB">
+            <merge-policy-class-name>com.hazelcast.spi.merge.PassThroughMergePolicy</merge-policy-class-name>
+        </wan-replication-ref>
+    </map>
+</hazelcast>
