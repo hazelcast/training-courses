@@ -4,7 +4,6 @@ import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
 import com.hazelcast.client.properties.ClientProperty;
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 
@@ -19,10 +18,10 @@ public class NaiveProcessingClient {
         config.setClusterName("YOUR_CLUSTER_NAME");
 
         // Making Employee class available through User Code Deployment
-        ClientUserCodeDeploymentConfig clientUserCodeDeploymentConfig = new ClientUserCodeDeploymentConfig();
-        clientUserCodeDeploymentConfig.addClass(hazelcast.Employee.class);
-        clientUserCodeDeploymentConfig.addClass(Solutions.EntryProcessorClient.class);
-        clientUserCodeDeploymentConfig.setEnabled(true);
+        ClientUserCodeDeploymentConfig clientUserCodeDeploymentConfig = new ClientUserCodeDeploymentConfig()
+                .addClass(hazelcast.Employee.class)
+                .addClass(Solutions.EntryProcessorClient.class)
+                .setEnabled(true);
         config.setUserCodeDeploymentConfig(clientUserCodeDeploymentConfig);
 
         // Create Hazelcast instance which is backed by a client
@@ -39,7 +38,6 @@ public class NaiveProcessingClient {
         /**
          * Without using EP, increment the salary of each employee
          * by a fixed integer value*/
-
 
         // Read the salaries of all employees to see the change
         for (IMap.Entry<String, Employee> entry : employees.entrySet()) {

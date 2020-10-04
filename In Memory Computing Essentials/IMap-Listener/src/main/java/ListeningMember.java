@@ -2,14 +2,10 @@ import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.properties.ClientProperty;
 import com.hazelcast.core.EntryEvent;
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.hazelcast.map.MapEvent;
 import com.hazelcast.map.listener.*;
-
-import static com.hazelcast.client.properties.ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN;
-import static com.hazelcast.client.properties.ClientProperty.STATISTICS_ENABLED;
 
 public class ListeningMember {
 
@@ -30,7 +26,7 @@ public class ListeningMember {
          * Add an EntryListener object to the IMap
          * */
 
-        System.out.println( "EntryListener registered" );
+        System.out.println("EntryListener registered");
     }
 
     static class MyEntryListener implements
@@ -40,61 +36,54 @@ public class ListeningMember {
             EntryEvictedListener<String, String>,
             EntryLoadedListener<String,String>,
             MapEvictedListener,
-            MapClearedListener   {
+            MapClearedListener {
         @Override
-        public void entryAdded( EntryEvent<String, String> event ) {
+        public void entryAdded(EntryEvent<String, String> event) {
             /**
              * Add a log message for entryAdded event
-             * */
+             */
         }
 
         @Override
-        public void entryRemoved( EntryEvent<String, String> event ) {
+        public void entryRemoved(EntryEvent<String, String> event) {
             /**
              * Add a log message for entryRemoved event
-             * */
-
+             */
         }
 
         @Override
-        public void entryUpdated( EntryEvent<String, String> event ) {
+        public void entryUpdated(EntryEvent<String, String> event) {
             /**
              * Add a log message for entryUpdated event
-             * */
+             */
         }
 
         @Override
-        public void entryEvicted( EntryEvent<String, String> event ) {
+        public void entryEvicted(EntryEvent<String, String> event) {
             /**
              * Add a log message for entryEvicted event
-             * */
+             */
         }
 
         @Override
-        public void entryLoaded( EntryEvent<String, String> event ) {
-
+        public void entryLoaded(EntryEvent<String, String> event) {
             /**
              * Add a log message for entryLoaded event
-             * */
-
+             */
         }
 
         @Override
-        public void mapEvicted( MapEvent event ) {
-
+        public void mapEvicted(MapEvent event) {
             /**
              * Add a log message for mapEvicted event
-             * */
-
+             */
         }
 
         @Override
-        public void mapCleared( MapEvent event ) {
-
+        public void mapCleared(MapEvent event) {
             /**
              * Add a log message for mapCleared event
-             * */
-
+             */
         }
     }
 }

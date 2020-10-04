@@ -1,12 +1,8 @@
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.properties.ClientProperty;
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
-
-import static com.hazelcast.client.properties.ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN;
-import static com.hazelcast.client.properties.ClientProperty.STATISTICS_ENABLED;
 
 public class ModifyingMember {
 
@@ -21,13 +17,13 @@ public class ModifyingMember {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 
         // Create a Hazelcast backed map
-        IMap<String, String> map = client.getMap( "training-listener");
+        IMap<String, String> map = client.getMap("training-listener");
 
         //Add, modify and delete items to trigger listeners
-        String key = "" + System.nanoTime();
+        String key = String.valueOf(System.nanoTime());
         String value = "1";
-        map.put( key, value );
-        map.put( key, "2" );
-        map.delete( key );
+        map.put(key, value);
+        map.put(key, "2");
+        map.delete(key);
     }
 }

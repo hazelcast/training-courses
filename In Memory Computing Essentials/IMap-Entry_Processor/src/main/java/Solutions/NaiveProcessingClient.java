@@ -3,7 +3,6 @@ package Solutions;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.properties.ClientProperty;
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import hazelcast.Employee;
@@ -18,8 +17,6 @@ public class NaiveProcessingClient {
         config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
         config.setClusterName("YOUR_CLUSTER_NAME");
 
-
-
         // Create Hazelcast instance which is backed by a client
         HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
         // Create a Hazelcast backed map
@@ -29,12 +26,14 @@ public class NaiveProcessingClient {
         employees.put("John", new Employee(20,1000));
         employees.put("Mark", new Employee(30,1000));
         employees.put("Spencer", new Employee(40,1000));
+
         /**
          * Without using EP, increment the salary of each employee
          * by a fixed integer value*/
         for (IMap.Entry<String, Employee> entry : employees.entrySet()) {
             String id = entry.getKey();
             Employee employee = employees.get(id);
+
             employee.incSalary(10);
             employees.put(entry.getKey(), employee);
         }

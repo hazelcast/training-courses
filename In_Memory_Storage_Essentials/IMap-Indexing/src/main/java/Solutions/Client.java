@@ -8,14 +8,16 @@ import com.hazelcast.config.IndexType;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.hazelcast.query.impl.predicates.SqlPredicate;
-import java.util.Collection;
-import java.util.Random;
 import hazelcast.Employee;
 
+import java.util.Collection;
+import java.util.Random;
+
 public class Client {
+
     public static void main(String[] args) {
         // If you are using the cloud to host your cluster, make sure you add the client credentials!
-        //Setting up cloud configuration
+        // Setting up cloud configuration
         ClientConfig config = new ClientConfig();
         config.setProperty("hazelcast.client.statistics.enabled","true");
         config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
@@ -37,13 +39,12 @@ public class Client {
         System.out.print("Pushing data... ");
 
         long start1 = System.currentTimeMillis();
-
-        for (int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             Employee emp = new Employee(20 + new Random().nextInt(30), new Random().nextInt(5000));
             map.put(i, emp);
         }
         long delta1 = System.currentTimeMillis() - start1;
-        System.out.println("done. "+ delta1 + " ms");
+        System.out.println("done. " + delta1 + " ms");
 
         System.out.print("Querying data... ");
         long start2 = System.currentTimeMillis();
@@ -59,8 +60,10 @@ public class Client {
         for (Employee emp : users) {
             System.out.println(emp);
         }
+
         System.out.println("Total matches: " + users.size() + " out of " + map.size());
         System.out.println("Elapsed time for query " + (System.currentTimeMillis() - start2) + " ms");
+
         client.shutdown();
     }
 }

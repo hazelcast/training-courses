@@ -9,9 +9,6 @@ import com.hazelcast.map.IMap;
 import com.hazelcast.map.MapEvent;
 import com.hazelcast.map.listener.*;
 
-import static com.hazelcast.client.properties.ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN;
-import static com.hazelcast.client.properties.ClientProperty.STATISTICS_ENABLED;
-
 public class ListeningMember {
 
     public static void main( String[] args ) {
@@ -30,7 +27,8 @@ public class ListeningMember {
         /**
          * Add an EntryListener object to the IMap
          * */
-        map.addEntryListener( new MyEntryListener(), true );
+        map.addEntryListener(new MyEntryListener(), true);
+
         System.out.println( "EntryListener registered" );
     }
 
@@ -41,47 +39,40 @@ public class ListeningMember {
             EntryEvictedListener<String, String>,
             EntryLoadedListener<String, String>,
             MapEvictedListener,
-            MapClearedListener   {
-        @Override
-        public void entryAdded( EntryEvent<String, String> event ) {
+            MapClearedListener {
 
-            System.out.println( "Entry Added:" + event );
+        @Override
+        public void entryAdded(EntryEvent<String, String> event) {
+            System.out.println("Entry Added:" + event);
         }
 
         @Override
-        public void entryRemoved( EntryEvent<String, String> event ) {
-
-            System.out.println( "Entry Removed:" + event );
+        public void entryRemoved(EntryEvent<String, String> event) {
+            System.out.println("Entry Removed:" + event);
         }
 
         @Override
-        public void entryUpdated( EntryEvent<String, String> event ) {
-
-            System.out.println( "Entry Updated:" + event );
+        public void entryUpdated(EntryEvent<String, String> event) {
+            System.out.println("Entry Updated:" + event);
         }
 
         @Override
-        public void entryEvicted( EntryEvent<String, String> event ) {
-
-            System.out.println( "Entry Evicted:" + event );
+        public void entryEvicted(EntryEvent<String, String> event) {
+            System.out.println("Entry Evicted:" + event);
         }
 
         @Override
         public void entryLoaded( EntryEvent<String, String> event ) {
-
-            System.out.println( "Entry Loaded:" + event );
         }
 
         @Override
-        public void mapEvicted( MapEvent event ) {
-
-            System.out.println( "Map Evicted:" + event );
+        public void mapEvicted(MapEvent event) {
+            System.out.println("Map Evicted:" + event);
         }
 
         @Override
-        public void mapCleared( MapEvent event ) {
-
-            System.out.println( "Map Cleared:" + event );
+        public void mapCleared(MapEvent event) {
+            System.out.println("Map Cleared:" + event);
         }
     }
 }
