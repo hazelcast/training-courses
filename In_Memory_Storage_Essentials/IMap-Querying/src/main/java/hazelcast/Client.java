@@ -2,25 +2,18 @@ package hazelcast;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
-import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
 import com.hazelcast.client.properties.ClientProperty;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
-import com.hazelcast.query.Predicate;
-import com.hazelcast.query.PredicateBuilder;
-import com.hazelcast.query.Predicates;
-import com.hazelcast.query.impl.predicates.SqlPredicate;
 
 import java.util.Collection;
 import java.util.Random;
 
-import static com.hazelcast.client.properties.ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN;
-import static com.hazelcast.client.properties.ClientProperty.STATISTICS_ENABLED;
-
 public class Client {
+
     public static void main(String[] args) {
         // If you are using the cloud to host your cluster, make sure you add the client credentials!
-        //Setting up cloud configuration
+        // Setting up cloud configuration
         ClientConfig config = new ClientConfig();
         config.setProperty("hazelcast.client.statistics.enabled","true");
         config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
@@ -39,13 +32,13 @@ public class Client {
 
         long start1 = System.currentTimeMillis();
 
-        for (int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             Employee emp = new Employee(20 + new Random().nextInt(30), new Random().nextInt(5000));
             map.set(i, emp);
         }
         long delta1 = System.currentTimeMillis() - start1;
 
-        System.out.println("done. "+ delta1 + " ms");
+        System.out.println("done. " + delta1 + " ms");
 
         System.out.print("Querying data... ");
         long start2 = System.currentTimeMillis();
@@ -53,15 +46,14 @@ public class Client {
         // Use a predicate to retrieve the employees with a salary between 0 and 2000
         /**
          * SQL Predicate
-         * */
+         */
 
         /**
          * Boolean predicate
-         * */
-
+         */
 
         // Either predicate here should return same result
-        Collection<Employee> matches = map.values(/**Either predicate should work*/);
+        Collection<Employee> matches = map.values(/* Either predicate should work */);
         System.out.println("done.");
 
         //  Print out the results
@@ -72,7 +64,6 @@ public class Client {
         System.out.println("Total matches: " + matches.size() + " out of " + map.size());
         System.out.println("Elapsed time for query " + (System.currentTimeMillis() - start2) + " ms");
 
-        // shut down the client
         client.shutdown();
     }
 }

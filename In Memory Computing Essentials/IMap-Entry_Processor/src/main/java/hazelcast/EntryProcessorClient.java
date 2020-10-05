@@ -4,25 +4,24 @@ import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientUserCodeDeploymentConfig;
 import com.hazelcast.client.properties.ClientProperty;
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.map.EntryProcessor;
 import com.hazelcast.map.IMap;
 
 public class EntryProcessorClient {
+
     public static void main(String[] args) {
         // If you are using the cloud to host your cluster, make sure you add the client credentials!
-        //Setting up cloud configuration
+        // Setting up cloud configuration
         ClientConfig config = new ClientConfig();
         config.setProperty("hazelcast.client.statistics.enabled","true");
         config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
         config.setClusterName("YOUR_CLUSTER_NAME");
 
         // Making Employee class available through User Code Deployment
-        ClientUserCodeDeploymentConfig clientUserCodeDeploymentConfig = new ClientUserCodeDeploymentConfig();
-        clientUserCodeDeploymentConfig.addClass(hazelcast.Employee.class);
-        clientUserCodeDeploymentConfig.addClass(Solutions.EntryProcessorClient.class);
-        clientUserCodeDeploymentConfig.setEnabled(true);
+        ClientUserCodeDeploymentConfig clientUserCodeDeploymentConfig = new ClientUserCodeDeploymentConfig()
+                .addClass(hazelcast.Employee.class)
+                .addClass(Solutions.EntryProcessorClient.class)
+                .setEnabled(true);
         config.setUserCodeDeploymentConfig(clientUserCodeDeploymentConfig);
 
         // Create Hazelcast instance which is backed by a client
@@ -39,7 +38,6 @@ public class EntryProcessorClient {
         /**
          * Using EP, increment the salary of each employee by a fixed integer value
          * */
-
 
         // Read the salaries of all employees to see the change
         for (IMap.Entry<String, Employee> entry : employees.entrySet()) {

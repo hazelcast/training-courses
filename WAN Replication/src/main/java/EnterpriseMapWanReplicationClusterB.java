@@ -15,20 +15,27 @@ public class EnterpriseMapWanReplicationClusterB {
     public static void main(String[] args) throws InterruptedException {
         initClusters();
         waitUntilClusterSafe();
-        Scanner reader = new Scanner(System.in);
+
         IMap map = clusterB.getMap("default");
+
         System.out.println("Cluster is ready now.");
         System.out.println("write \"help\" for the command lists:");
+
+        Scanner reader = new Scanner(System.in);
         while (true) {
             Thread.sleep(100);
+
             System.out.println("Command:");
             String command = reader.nextLine();
+
             if (command.equals("help")) {
                 printHelpCommands();
             }
+
             if (command.equals("size")) {
                 System.out.println("map size: " + map.size());
             }
+
             if (command.startsWith("get")) {
                 String token = command.split(" ")[1];
                 System.out.println(map.get(token));
@@ -58,6 +65,7 @@ public class EnterpriseMapWanReplicationClusterB {
         config.setClusterName("clusterB");
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
         config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true).addMember("127.0.0.1:5702");
+
         return config;
     }
 }
