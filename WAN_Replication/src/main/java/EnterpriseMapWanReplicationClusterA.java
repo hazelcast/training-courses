@@ -76,6 +76,6 @@ public class EnterpriseMapWanReplicationClusterA {
     }
 
     private static void initClusters() throws FileNotFoundException {
-        clusterA = Hazelcast.newHazelcastInstance(new XmlConfigBuilder("src/main/resources/hazelcast.xml").build());
+        clusterA = Hazelcast.newHazelcastInstance(new XmlConfigBuilder("WAN_Replication/src/main/resources/hazelcast.xml").build());
     }
 }
