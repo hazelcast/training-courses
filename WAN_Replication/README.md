@@ -16,20 +16,11 @@ First you need to set your licence keys.
 - For EnterpriseMapWanReplicationClusterB, change the value of `static String licenseKey = "YOUR_LICENSE_KEY";`
 
 ### Map WAN Replication
-For running ClusterA run maven command:
-  
-`mvn exec:java -Dexec.mainClass=com.hazelcast.wan.batch.map.EnterpriseMapWanReplicationClusterA`
-
-For running ClusterB run maven command:
-  
-`mvn exec:java -Dexec.mainClass=com.hazelcast.wan.batch.map.EnterpriseMapWanReplicationClusterB`
 
 Example Use Case:  
 
-1) start clusterA:  
-`mvn exec:java -Dexec.mainClass=com.hazelcast.wan.batch.map.EnterpriseMapWanReplicationClusterA`
-2) start clusterB:  
-`mvn exec:java -Dexec.mainClass=com.hazelcast.wan.batch.map.EnterpriseMapWanReplicationClusterB`
+1) start clusterA.
+2) start clusterB.  
 3) in clusterA terminal: `put 1 2`
 4) in clusterB terminal: `get 1`
 5) in clusterA terminal: `putmany 1000`
