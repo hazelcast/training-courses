@@ -3,17 +3,17 @@ This project is prepared to serve as a sample application for Hazelcast Enterpri
 Here, Hazelcast's use case is Enterprise WAN Batch Replication. 
  
 ### Scenario
-Very briefly, you can send map or cache replication events via WAN Replication.
+Very briefly, you can send map replication events via WAN Replication.
 In this project we have two clusters (clusterA and clusterB) and clusterA replicates events to
 clusterB. Also there is a command line interface that you can put objects from clusterA and check the objects in clusterB.
 
-In this project there are two sample applications. One of them is for Map Replication and the other one is for Cache Replication.
+In this project there are two sample applications for Map Replication.
 
 ## How to Run Sample Application
 First you need to set your licence keys.
 
 - EnterpriseMapWanReplicationClusterA reads licence key from hazelcast.xml under resources folder. Simply, change `<license-key>YOUR_LICENSE_KEY</license-key>` with yours. 
-- For EnterpriseMapWanReplicationClusterB, EnterpriseCacheWanReplicationClusterA and EnterpriseCacheWanReplicationClusterB, change the value of `static String licenseKey = "YOUR_LICENSE_KEY";`
+- For EnterpriseMapWanReplicationClusterB, change the value of `static String licenseKey = "YOUR_LICENSE_KEY";`
 
 ### Map WAN Replication
 For running ClusterA run maven command:
@@ -23,15 +23,6 @@ For running ClusterA run maven command:
 For running ClusterB run maven command:
   
 `mvn exec:java -Dexec.mainClass=com.hazelcast.wan.batch.map.EnterpriseMapWanReplicationClusterB`
-
-### Cache WAN Replication
-For running ClusterA run maven command:
-
-`mvn exec:java -Dexec.mainClass=com.hazelcast.wan.batch.cache.EnterpriseCacheWanReplicationClusterA`
-
-For running ClusterB run maven command:
-  
-`mvn exec:java -Dexec.mainClass=com.hazelcast.wan.batch.cache.EnterpriseCacheWanReplicationClusterB`
 
 Example Use Case:  
 
