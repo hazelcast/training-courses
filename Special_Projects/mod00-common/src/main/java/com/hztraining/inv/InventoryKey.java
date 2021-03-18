@@ -9,23 +9,23 @@ import java.io.Serializable;
 
 /** Inventory database and IMap have a compound key consisting of SKU and Location */
 public class InventoryKey implements Serializable {
-    private String SKU;
+    private String sku;
     private String location;
 
     public InventoryKey(String sku, String location) {
-        this.SKU = sku;
+        this.sku = sku;
         this.location = location;
     }
 
     // no-arg constructor required by IDSFactory
     public InventoryKey() {}
 
-    public String sku() { return SKU; }
+    public String sku() { return sku; }
     public String location() { return location; }
 
     @Override
     public String toString() {
-        return SKU + location;
+        return sku + location;
     }
 
     // IdentifiedDataSerializable implementation (not in use at the moment)
@@ -39,12 +39,12 @@ public class InventoryKey implements Serializable {
     }
 
     public void writeData(ObjectDataOutput objectDataOutput) throws IOException {
-        objectDataOutput.writeUTF(SKU);
+        objectDataOutput.writeUTF(sku);
         objectDataOutput.writeUTF(location);
     }
 
     public void readData(ObjectDataInput objectDataInput) throws IOException {
-        SKU = objectDataInput.readUTF();
+        sku = objectDataInput.readUTF();
         location = objectDataInput.readUTF();
     }
 }

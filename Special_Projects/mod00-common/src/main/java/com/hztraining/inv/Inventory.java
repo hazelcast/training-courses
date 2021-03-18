@@ -20,8 +20,8 @@ public class Inventory implements Serializable {
 
     private Random random = new Random();
 
-    public void setSKU(String sku) { this.sku = sku; };
-    public String getSKU() { return sku; }
+    public void setSku(String sku) { this.sku = sku; };
+    public String getSku() { return sku; }
 
     public void setDescription(String description) { this.description = description; }
     public String getDescription() { return description; }
