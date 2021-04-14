@@ -5,16 +5,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hazelcast.training.courses</groupId>
-  <artifactId>in_memory_storage_essentials</artifactId>
+  <artifactId>in_memory_computing_essentials</artifactId>
   <packaging>pom</packaging>
   <version>1.0</version>
 
   <modules>
 
-    <module>IMap-Eviction</module>
-    <module>IMap-Get_Put</module>
-    <module>IMap-Querying</module>
-    <module>IMap-Indexing</module>
+    <module>IMap-Entry_Processor</module>
+    <module>IMap-Listener</module>
+    
 
   </modules>
 
