@@ -42,7 +42,6 @@ public class NewSQLEngineSolution {
                 ritem.setLocation(row.getObject("location"));
                 ritem.setLocationType(row.getObject("locationType"));
                 ritem.setQuantity(row.getObject("quantity"));
-                //System.out.println("Created item " + ritem);
                 results.add(ritem);
             }
         }
