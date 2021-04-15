@@ -39,7 +39,7 @@ public class Aggregation {
         System.out.printf("Total on hand for %s = %d (elapsed %d ms)\n", sku, totalOnHand, elapsed);
 
         start = System.currentTimeMillis();
-        totalOnHand = 0; // TODOL aggregate against the indexed map
+        totalOnHand = 0; // TODO: aggregate against the indexed map
         elapsed = System.currentTimeMillis() - start;
         System.out.printf("Total on hand for %s = %d (elapsed %d ms using indexed map)\n", sku, totalOnHand, elapsed);
 

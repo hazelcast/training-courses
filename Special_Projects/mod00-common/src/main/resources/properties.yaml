@@ -10,9 +10,9 @@ clusterConfiguration:
   # Hazelcast Cloud Shared - Multi-tenant, suitable for dev and small production deployments, has a free 200MB tier and pay-as-you-go.
   personal-cluster:
     # This is a free tier cluster set up by the student
-    name: demo_small
+    name: training
     #password: 70b7462549ca485a9639679ae77e35c1
-    discovery-token: N63WNvmYsUpRdwhH7QVcvE7HdwJPuKWUZMsvifjHmyJdJ7T0l6
+    discovery-token: fFRtr6uPUr0CDflWifSyyXaj3yCGDkGMIfasE5Jx04xfyohtMF
     # TODO: comment this back out after finished testing in UAT!
     #url-base: https://uat.hazelcast.cloud
 

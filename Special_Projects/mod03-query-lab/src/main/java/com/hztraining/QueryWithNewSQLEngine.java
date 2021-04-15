@@ -11,26 +11,38 @@ import com.hazelcast.sql.SqlService;
 import com.hazelcast.sql.SqlStatement;
 import com.hztraining.inv.Inventory;
 import com.hztraining.inv.InventoryKey;
-import com.hazelcast.query.Predicate;
-import com.hazelcast.query.Predicates;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class QueryWithSQLPredicate {
+public class QueryWithNewSQLEngine {
 
     private HazelcastInstance client;
     private static long start;
 
-    /** This version uses the old query engine */
     public Collection<Inventory> queryNearbyStores(IMap<InventoryKey, Inventory> invmap, String item, String[] locations) {
-        String locnKeys = String.join(", ", locations);
+        String locnKeys = String.join(" OR location = ", locations); // No IN support in 4.1 SQL Engine
         // TODO: pass expression to match sku (passed in 'item' parameter),
         //  locations (in locnkeys string we just built), and with quantity > 0
-        Predicate predicate = Predicates.sql("TODO");
-        System.out.println("Query: " + predicate.toString());
+        String predicate = "TODO"; // TODO
+        String query = "SELECT * FROM " + invmap.getName() + " WHERE " + predicate;
+        SqlStatement stmt = new SqlStatement(query);
+        System.out.println("Query: " + query);
+
         start = System.currentTimeMillis();
-        Collection<Inventory> results = invmap.values(predicate);
+        Collection<Inventory> results = new ArrayList<>();
+        SqlService sqlEngine = client.getSql();
+        try (SqlResult result = sqlEngine.execute(stmt)) {
+            for (SqlRow row : result) {
+                Inventory ritem = new Inventory();
+                ritem.setSku(row.getObject("sku"));
+                ritem.setDescription(row.getObject("description"));
+                ritem.setLocation(row.getObject("location"));
+                ritem.setLocationType(row.getObject("locationType"));
+                ritem.setQuantity(row.getObject("quantity"));
+                results.add(ritem);
+            }
+        }
         return results;
     }
 
@@ -42,10 +54,10 @@ public class QueryWithSQLPredicate {
         ClientUserCodeDeploymentConfig ucd = config.getUserCodeDeploymentConfig();
         ucd.setEnabled(true);
         ucd.addClass(Inventory.class);
-        //ucd.addClass(InventoryTable.class); // local only, because defined as MapLoader
+        ucd.addClass(InventoryKey.class);
 
-        // Query using SQLPredicate
-        QueryWithSQLPredicate main = new QueryWithSQLPredicate();
+        // Query using SQL
+        QueryWithNewSQLEngine main = new QueryWithNewSQLEngine();
         main.client = HazelcastClient.newHazelcastClient(config);
 
         try {
@@ -56,28 +68,27 @@ public class QueryWithSQLPredicate {
             String item = "Item000037";
             String[] stores = new String[]{"0121", "0132", "0106"};
 
-            // Without index
-            IMap<InventoryKey, Inventory> invmap = main.client.getMap("invmap");
-            Collection<Inventory> nearby = main.queryNearbyStores(invmap, item, stores);
-            long elapsed = System.currentTimeMillis() - start;
-            System.out.printf("%d items matched unindexed query in %dms\n", nearby.size(), elapsed);
-
-            for (Inventory i : nearby)
-                System.out.println(i);
+            // Currently - cannot query HD map Without index
+//            IMap<InventoryKey, Inventory> invmap = main.client.getMap("invmap");
+//            Collection<Inventory> nearby = main.queryNearbyStores(invmap, item, stores);
+//            long elapsed = System.currentTimeMillis() - start;
+//            System.out.printf("%d items matched unindexed query in %dms\n", nearby.size(), elapsed);
+//            for (Inventory i : nearby)
+//                System.out.println(i);
 
             // With index
+            start = System.currentTimeMillis();
             IMap<InventoryKey, Inventory> invmapi = main.client.getMap("invmap_indexed");
-            nearby = main.queryNearbyStores(invmapi, item, stores);
-            elapsed = System.currentTimeMillis() - start;
+            Collection<Inventory> nearby = main.queryNearbyStores(invmapi, item, stores);
+            long elapsed = System.currentTimeMillis() - start;
             System.out.printf("%d items matched indexed query in %dms\n", nearby.size(), elapsed);
-
             for (Inventory i : nearby)
                 System.out.println(i);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           main.client.shutdown();
+            main.client.shutdown();
         }
 
     }
