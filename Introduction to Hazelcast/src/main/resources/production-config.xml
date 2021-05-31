@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.hazelcast.com/schema/config
+                               http://www.hazelcast.com/schema/config/hazelcast-config-4.2.xsd"
+           xmlns="http://www.hazelcast.com/schema/config">
+
+    <map name="productionMap">
+        <per-entry-stats-enabled>true</per-entry-stats-enabled>
+        <!-- TODO: update config for rolling restart -->
+        <!-- <time-to-live-seconds>10</time-to-live-seconds> -->
+    </map>
+
+</hazelcast>

@@ -91,3 +91,5 @@ buildNumber.properties
 .mvn/timing.properties
 
 **/testdb.*
+
+.DS_STORE

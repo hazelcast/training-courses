@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.hazelcast.com/schema/config
+                               http://www.hazelcast.com/schema/config/hazelcast-config-4.2.xsd"
+           xmlns="http://www.hazelcast.com/schema/config">
+
+<!--    <partition-group enabled="true" group-type="HOST_AWARE" />-->
+
+    <map name="sampleMap">
+        <statistics-enabled>true</statistics-enabled>
+        <per-entry-stats-enabled>true</per-entry-stats-enabled>
+        <backup-count>3</backup-count>
+    </map>
+
+</hazelcast>
