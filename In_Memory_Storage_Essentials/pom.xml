@@ -4,22 +4,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.hazelcast.training.courses</groupId>
-  <artifactId>in_memory_storage_essentials</artifactId>
+  <groupId>com.hazelcast</groupId>
+  <artifactId>essentials-training-parent</artifactId>
   <packaging>pom</packaging>
   <version>1.0</version>
 
   <modules>
-
-    <module>IMap-Eviction</module>
-    <module>IMap-Get_Put</module>
-    <module>IMap-Querying</module>
-    <module>IMap-Indexing</module>
-
+    <module>lab1-IMap-Overview-Embedded</module>
+    <module>lab2-IMap-Overview-ClientServer</module>
+    <module>lab3-IMap-Configuration</module>
+    <module>lab4-Eviction-and-Expiration</module>
+    <module>lab5-MapStore</module>
+    <module>lab6-Queries-1</module>
+    <module>lab7-Indexing</module>
+    <module>lab8-Queries-2</module>
   </modules>
 
-
-
+  <properties>
+    <hazelcast.version>4.2</hazelcast.version>
+  </properties>
 
   <build>
     <plugins>
@@ -36,5 +39,12 @@
     </plugins>
   </build>
 
+  <!-- For hazelcast-enterprise.jar, if you wish to use it -->
+  <repositories>
+    <repository>
+      <id>Hazelcast Private Release Repository</id>
+      <url>https://repository.hazelcast.com/release/</url>
+    </repository>
+  </repositories>
 
 </project>
