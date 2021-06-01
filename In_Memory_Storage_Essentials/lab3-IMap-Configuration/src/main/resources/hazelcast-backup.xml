@@ -16,6 +16,7 @@
         </join>
     </network>
 
+    <!--Use wildcard sample-->
     <map name="isbank">
         <backup-count>0</backup-count>
         <async-backup-count>0</async-backup-count>
