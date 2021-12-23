@@ -4,7 +4,7 @@
            xmlns="http://www.hazelcast.com/schema/config">
 
     <cluster-name>clusterA</cluster-name>
-    <license-key></license-key>
+    <license-key>9999Nodes#NqAguQCEib09dZJkBn6fY5DOPKyUMm1wlHS2WTG8jX18501109090310000919001321010119010911190050</license-key>
 
     <network>
         <port>5701</port>
