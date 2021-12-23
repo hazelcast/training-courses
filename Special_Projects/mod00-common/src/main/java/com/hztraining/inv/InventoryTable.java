@@ -95,7 +95,7 @@ public class InventoryTable
             if (insertStatement == null) {
                 insertStatement = conn.prepareStatement(insertTemplate);
             }
-            insertStatement.setString(SKU, item.getSKU());
+            insertStatement.setString(SKU, item.getSku());
             insertStatement.setString(DESCRIPTION, item.getDescription());
             insertStatement.setString(LOCATION, item.getLocation());
             insertStatement.setString(LOCATION_TYPE, item.getLocationType());
@@ -126,7 +126,7 @@ public class InventoryTable
                 return null;
             }
             while (rs.next()) {
-                item.setSKU(rs.getString(SKU));
+                item.setSku(rs.getString(SKU));
                 item.setDescription(rs.getString(DESCRIPTION));
                 item.setLocation(rs.getString(LOCATION));
                 item.setLocationType(rs.getString(LOCATION_TYPE));
@@ -159,7 +159,7 @@ public class InventoryTable
             }
             while (rs.next()) {
                 Inventory item = new Inventory();
-                item.setSKU(rs.getString(SKU));
+                item.setSku(rs.getString(SKU));
                 item.setDescription(rs.getString(DESCRIPTION));
                 item.setLocation(rs.getString(LOCATION));
                 item.setLocationType(rs.getString(LOCATION_TYPE));

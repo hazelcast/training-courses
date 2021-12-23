@@ -65,7 +65,7 @@ public class PopulateCacheWithJet {
 
         // Transform the Inventory items to Map.Entry items so we can insert into IMap
         BatchStage<Entry<InventoryKey, Inventory>> asMapEntry = source.map(inv ->
-            entry(new InventoryKey(inv.getSKU(), inv.getLocation()), inv)
+            entry(new InventoryKey(inv.getSku(), inv.getLocation()), inv)
         ).setName("Convert to Map.Entry");
 
         asMapEntry.writeTo(Sinks.remoteMap("invmap", remoteIMDGConfig))
