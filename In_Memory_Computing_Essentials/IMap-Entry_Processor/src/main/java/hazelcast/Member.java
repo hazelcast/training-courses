@@ -13,3 +13,5 @@ public class Member {
         HazelcastInstance member = Hazelcast.newHazelcastInstance(config);
     }
 }
+
+//for commit purposes only

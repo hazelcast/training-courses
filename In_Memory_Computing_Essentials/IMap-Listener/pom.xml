@@ -11,7 +11,7 @@
     </parent>
 
 
-    <artifactId>IMap-Entry_Processor</artifactId>
+    <artifactId>IMap-Listener</artifactId>
 
     <dependencies>
         <dependency>
