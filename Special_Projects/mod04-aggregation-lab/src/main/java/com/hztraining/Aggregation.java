@@ -28,7 +28,7 @@ public class Aggregation {
         // Aggregate total on hand across all locations
         String sku = "Item000123";
         // Note: Index is case-sensitive
-        SqlPredicate predicate = new SqlPredicate("SKU=" + sku);
+        SqlPredicate predicate = new SqlPredicate("sku=" + sku);
 
         // TODO: accumulate the total quantity for value "quantity" for the selected item at all locations
         // See https://docs.hazelcast.org/docs/latest/manual/html-single/#built-in-aggregations
@@ -39,7 +39,7 @@ public class Aggregation {
         System.out.printf("Total on hand for %s = %d (elapsed %d ms)\n", sku, totalOnHand, elapsed);
 
         start = System.currentTimeMillis();
-        totalOnHand = 0; // TODOL aggregate against the indexed map
+        totalOnHand = 0; // TODO: aggregate against the indexed map
         elapsed = System.currentTimeMillis() - start;
         System.out.printf("Total on hand for %s = %d (elapsed %d ms using indexed map)\n", sku, totalOnHand, elapsed);
 

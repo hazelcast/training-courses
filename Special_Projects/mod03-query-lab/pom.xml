@@ -20,10 +20,12 @@
       <artifactId>mod00-common</artifactId>
       <version>1.0</version>
     </dependency>
+    <!-- inherit
     <dependency>
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast</artifactId>
     </dependency>
+    -->
 
   </dependencies>
 
@@ -41,26 +43,9 @@
           </execution>
         </executions>
         <configuration>
-
           <mainClass>com.hztraining.QueryWithSQLPredicate</mainClass>
-
-          <!-- pass on command line instead of here
-          <arguments>
-            <argument>-onprem</argument>
-          </arguments>
-          -->
-
         </configuration>
 
-        <!-- this doesn't help, and is redundant with project dependency
-        <dependencies>
-          <dependency>
-            <groupId>com.hztraining</groupId>
-            <artifactId>mod00-common</artifactId>
-            <version>1.0</version>
-          </dependency>
-        </dependencies>
-        -->
       </plugin>
     </plugins>
   </build>

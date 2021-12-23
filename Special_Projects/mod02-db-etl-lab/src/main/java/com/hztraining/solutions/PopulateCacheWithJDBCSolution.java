@@ -31,6 +31,7 @@ public class PopulateCacheWithJDBCSolution {
         ClientUserCodeDeploymentConfig ucd = clientConfig.getUserCodeDeploymentConfig();
         ucd.setEnabled(true);
         ucd.addClass(Inventory.class);
+        //clientConfig.setUserCodeDeploymentConfig(ucd); // redundant but trying anyway
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
 
@@ -45,7 +46,7 @@ public class PopulateCacheWithJDBCSolution {
         List<Inventory> items = table.readAllFromDatabase(); // Less than 2 seconds to do this
         Map<InventoryKey, Inventory> localMap = new HashMap<>();
         for (Inventory item : items) {
-            InventoryKey key = new InventoryKey(item.getSKU(), item.getLocation());
+            InventoryKey key = new InventoryKey(item.getSku(), item.getLocation());
             localMap.put(key, item);
             //invmap.put(key, item); // NO - will take 30 minutes to load one-at-a-time this way!
             counter++;
