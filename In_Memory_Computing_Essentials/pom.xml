@@ -17,6 +17,7 @@
     <modules>
     <module>IMap-Entry_Processor</module>
         <module>IMap-Listener</module>
+        <module>Executor</module>
     </modules>
 
     <dependencies>
