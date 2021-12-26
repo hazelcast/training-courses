@@ -2,9 +2,9 @@ package hazelcast;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
-import com.hazelcast.client.properties.ClientProperty;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
+import com.hazelcast.query.impl.predicates.SqlPredicate;
 
 import java.util.Collection;
 import java.util.Random;
@@ -16,8 +16,8 @@ public class Client {
         // Setting up cloud configuration
         ClientConfig config = new ClientConfig();
         config.setProperty("hazelcast.client.statistics.enabled","true");
-        config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
-        config.setClusterName("YOUR_CLUSTER_NAME");
+       // config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "YOUR_CLOUD_DISCOVERY_TOKEN");
+       // config.setClusterName("YOUR_CLUSTER_NAME");
 
         //adding Employee factory to populate map
         config.getSerializationConfig().addPortableFactoryClass(Employee.FACTORY_ID, Employee.EmployeeFactory.class);
@@ -47,13 +47,14 @@ public class Client {
         /**
          * SQL Predicate
          */
+        SqlPredicate p1 = new SqlPredicate("salary between 0 and 2000");
 
         /**
          * Boolean predicate
          */
 
         // Either predicate here should return same result
-        Collection<Employee> matches = map.values(/* Either predicate should work */);
+        Collection<Employee> matches = map.values(p1);
         System.out.println("done.");
 
         //  Print out the results
