@@ -1,15 +1,7 @@
-# Intro to Hazelcast - Developer 101
+# Lab 4: Hazelcast Cloud
 
-## Contents
+1. Go to https://docs.hazelcast.com/cloud/getting-started and follow the instructions to set up your cloud cluster.
 
-- Lab 1: Download/Install Hazelcast Platform
-- Lab 2: In-Memory Storage
-- Lab 3: Real-Time Processing
-- Lab 4: Hazelcast Cloud
+2. In the cloud dashboard, select the **Connect Your Application** button. Follow the instructions for your preferred language. 
 
-## Requirements
-
-* Java Developer Kit version 8 or higher
-* An IDE, preferrably one that supports Maven
-
-Individual lab instructions are in the README files under each lab. 
+![CloudDashboard](CloudClient.png)

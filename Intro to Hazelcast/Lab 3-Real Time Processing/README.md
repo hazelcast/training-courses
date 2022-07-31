@@ -1,15 +1,25 @@
-# Intro to Hazelcast - Developer 101
 
-## Contents
+# Lab 3: Real Time Processig
 
-- Lab 1: Download/Install Hazelcast Platform
-- Lab 2: In-Memory Storage
-- Lab 3: Real-Time Processing
-- Lab 4: Hazelcast Cloud
+## Objectives
 
-## Requirements
+- Create a simple pipeline in Java and submit it to the Hazelcast Platform
+- Use SQL to get data from a Kafka topic and display the results of a query 
+- Use SQL to create a job that writes data from a Kafka topic to an in-memory map
 
-* Java Developer Kit version 8 or higher
-* An IDE, preferrably one that supports Maven
+## Part 1: Building and Submitting a Pipeline
 
-Individual lab instructions are in the README files under each lab. 
+Go to https://docs.hazelcast.com/hazelcast/latest/pipelines/stream-processing-client and complete the tutorial. 
+
+Note: If you already have your cluster and Management Center running, you can skip those startup steps. 
+
+Not a Java programmer? No problem. Download the file EvenNumbers.jar and enter the following command:
+
+hz-cli submit --class org.example.EvenNumberStream EvenNumbers.jar
+
+This submits the already-compiled pipeline to Hazelcast. From here, you can proceed with using Management Center to monitor the job. 
+
+
+## Part 2: SQL with Streaming
+
+1. Go to https://docs.hazelcast.com/hazelcast/latest/sql/learn-sql and complete the tutorial. 
