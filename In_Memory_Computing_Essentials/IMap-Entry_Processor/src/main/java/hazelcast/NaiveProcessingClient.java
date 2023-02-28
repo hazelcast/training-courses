@@ -89,14 +89,9 @@ public class NaiveProcessingClient {
 
         /**
          * Without using EP, increment the salary of each employee
-         * by a fixed integer value*/
-        for (IMap.Entry<String, Employee> entry : employees.entrySet()) {
-            String id = entry.getKey();
-            Employee employee = employees.get(id);
+         * by a fixed integer value
+         */
 
-            employee.incSalary(10);
-            employees.put(entry.getKey(), employee);
-        }
         // Read the salaries of all employees to see the change
         for (IMap.Entry<String, Employee> entry : employees.entrySet()) {
             System.out.println(entry.getKey() + " salary: " + entry.getValue().getSalary());

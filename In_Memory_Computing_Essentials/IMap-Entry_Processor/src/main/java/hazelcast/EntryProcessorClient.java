@@ -19,8 +19,7 @@ public class EntryProcessorClient {
         // Pushing user code to cluster
         config.getUserCodeDeploymentConfig()
                 .setEnabled(true)
-                .addClass(Employee.class)
-                .addClass(SalaryIncreaseEntryProcessor.class);
+                .addClass(Employee.class);
 
 
         // Create Hazelcast instance which is backed by a client
@@ -90,8 +89,7 @@ public class EntryProcessorClient {
 
         /**
          * Using EP, increment the salary of each employee by a fixed integer value
-         * */
-        employees.executeOnEntries(new SalaryIncreaseEntryProcessor());
+         */
 
         // Read the salaries of all employees to see the change
         for (IMap.Entry<String, Employee> entry : employees.entrySet()) {
