@@ -9,7 +9,7 @@
 
 Determine whether you will use Hazelcast installed locally on your computer or Hazelcast Cloud. 
 
-For local installation, go to the [Hazelcast Platform Documentation](https://docs.hazelcast.com/hazelcast/5.0/). Follow the instructions to install Hazelcast, install Management Center, and connect a Java client. Before you start the cluster, add the following to your hazelcast.xml configuration:
+For local installation, go to the [Hazelcast Platform Documentation](https://docs.hazelcast.com/hazelcast/latest/). Follow the instructions to install Hazelcast, install Management Center, and connect a Java client. Before you start the cluster, add the following to your hazelcast.xml configuration:
 ```
     <map name="training-eviction">
         <eviction eviction-policy="LFU" max-size-policy="USED_HEAP_SIZE" size="1"/>
